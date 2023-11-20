@@ -1,6 +1,6 @@
 # miniprokkis
 
-https://github.com/tfhuhtal/miniprokkis/workflows/CI/badge.svg
+![GHA workflow badge](https://github.com/tfhuhtal/miniprokkis/workflows/CI/badge.svg)
 
 Projekti Backlog:
 https://docs.google.com/spreadsheets/d/1duoyQsJN4G0WOU0dFs1OPUU5aQuWQdl65n7CMs9gvvU/edit#gid=0
