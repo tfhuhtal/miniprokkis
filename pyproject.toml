@@ -8,6 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 pytest = "^7.4.3"
+autopep8 = "^2.0.4"
+coverage = "^7.3.2"
+invoke = "^2.2.0"
 
 
 [build-system]
