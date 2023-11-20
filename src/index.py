@@ -1,7 +1,7 @@
 from converter import Converter
 
 def main():
-    converter = Converter("../example.json")
+    converter = Converter("example.json")
     print(converter.convert())
 
 if __name__ == "__main__":

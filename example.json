@@ -1,0 +1,32 @@
+[
+    {
+        "type": "article",
+        "key": "Smith2019",
+        "fields": {
+            "author": "John Smith",
+            "title": "A Sample Article",
+            "journal": "Journal of Samples",
+            "year": "2019"
+        }
+    },
+    {
+        "type": "book",
+        "key": "Doe2020",
+        "fields": {
+            "author": "Jane Doe",
+            "title": "Introduction to Samples",
+            "publisher": "Sample Publishers",
+            "year": "2020"
+        }
+    },
+    {
+        "type": "inproceedings",
+        "key": "Johnson2021",
+        "fields": {
+            "author": "Robert Johnson",
+            "title": "Conference on Samples",
+            "booktitle": "Proceedings of Sample Conferences",
+            "year": "2021"
+        }
+    }
+]
