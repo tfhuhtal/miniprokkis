@@ -10,3 +10,9 @@ https://docs.google.com/spreadsheets/d/1B0Ccr3oT1f9iR5cF_5-hlZYyvMw3nH5-nHtba_lr
 
 Projekti sprint/backlogi:
 https://docs.google.com/document/d/1tiGdhX-muK6P9Jw6jdNwD3EucazJ4rsqjc8hr_WJRbc/edit
+
+
+## Käyttöohjeita
+
+- alusta eka projekti ```poetry install``` komennolla.
+- tämän jälkeen voit käyttää komentoja ```poetry run invoke start``` ohjelman ajamiseen, ```poetry run invoke test``` testaamiseen, ```poetry run invoke coverage``` kattavuusraportin tulostamiseen ja ```poetry run invoke clean``` koodin muotoiluun.
