@@ -18,6 +18,7 @@ class ReferenceHandler:
     def add(self):
         data = {}
 
+        #Kysy lähteen avainta
         while True:
             input = self.io.read("\nLähteen avain: ('exit' peruaksesi toiminto) ")
             if input == "":
@@ -31,6 +32,7 @@ class ReferenceHandler:
 
         types = self.reference_types.get_types()
 
+        #Kysy lähteen tyyppiä, jonka pitää löytyä source_types.json tiedostosta
         self.io.write(f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
         while True:
             input = self.io.read("\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
@@ -47,8 +49,10 @@ class ReferenceHandler:
             break
         
         data["fields"] = {}
+        #Hae pakolliset ja vapaaehtoiset kentät lähdetyypin perusteella
         fields = self.reference_types.get_fields(data["type"])
         
+        #Kysy pakolliset kentät
         self.io.write("\nPakolliset kentät: ('exit' peruaksesi toiminto) ")
         for field in fields["required"]:
             while True:
@@ -61,7 +65,8 @@ class ReferenceHandler:
                     continue
                 data["fields"][field] = input
                 break
-
+        
+        #Kysy vapaaehtoiset kentät. Tyhjä input ohittaa kentän
         self.io.write("\nVapaaehtoiset kentät: ('exit' peruaksesi toiminto, ENTER = seuraava kenttä) ")
         for field in fields["optional"]:
             while True:
