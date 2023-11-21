@@ -29,9 +29,9 @@ class Converter:
         with open(self.json_file_path, "w") as f:
             f.write("{}")
 
-    def add_book(self, book):
-        book_data = book.to_json()
-        self.json_data.append(book_data)
+    def add_reference(self, reference):
+        reference_data = reference.to_json()
+        self.json_data.append(reference_data)
         self._save_json()
 
     def _save_json(self):
