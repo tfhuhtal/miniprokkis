@@ -14,6 +14,7 @@ class ReferenceHandler:
         self.io.write("0 - Sulje sovellus")
         self.io.write("1 - Lisää lähde")
         self.io.write("2 - Tulosta viitelista")
+        self.io.write("3 - Poista lähde")
 
     def add(self):
         data = {}
@@ -93,6 +94,22 @@ class ReferenceHandler:
 
         for entry in data:
             self.io.write(entry)
+            
+    def delete(self):
+        # Kysy lähteen avainta
+        key = ""
+        while True:
+            input = self.io.read(
+                "\nLähteen avain: ('exit' peruaksesi toiminto) ")
+            if input == "":
+                self.io.write("\nKenttä ei voi olla tyhjä")
+                continue
+            if input == "exit":
+                self.io.write("\nToiminto peruttu")
+                return
+            key = input
+            self.converter.delete_reference(key)
+            self.io.write("\nLähde poistettu.")                	
 
     def run(self):
         self.info()
@@ -105,6 +122,8 @@ class ReferenceHandler:
                 self.add()
             elif command == "2":
                 self.list_references()
+            elif command == "3":
+                self.delete()
             else:
                 self.info()
 

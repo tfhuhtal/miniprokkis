@@ -71,3 +71,13 @@ class Converter:
                 return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
 
         return pretty_strings
+    
+    def delete_reference(self, reference_key):
+    	for i in range(len(self.json_data)):
+    		entry = self.json_data[i]
+    		entry_key = entry['key']
+    		if entry_key == reference_key:
+    			self.json_data.pop(i)
+    			self._save_json()
+    	return
+    
