@@ -1,10 +1,9 @@
-from converter import Converter
-
+from referencehandler import ReferenceHandler
 
 def main():
-    converter = Converter("example.json")
-    print(converter.convert())
-
+    app = ReferenceHandler()
+    app.run()
 
 if __name__ == "__main__":
     main()
+
