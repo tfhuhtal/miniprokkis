@@ -2,35 +2,36 @@ from converter import Converter
 from reference import Book
 
 class ReferenceHandler:
-    def __init__(self):
+    def __init__(self, io):
         self.converter = Converter("example.json")
+        self.io = io
 
     def info(self):
-        print("Komennot: ")
-        print("0 Sulje sovellus")
-        print("1 Lisää kirja")
-        print("2 Tulosta viitelista")
+        self.io.write("Komennot: ")
+        self.io.write("0 Sulje sovellus")
+        self.io.write("1 Lisää kirja")
+        self.io.write("2 Tulosta viitelista")
 
 
     def add(self):
-        key = input("Kirjan avain: ")
-        title = input("Kirjan nimi: ")
-        author = input("Kirjoittaja: ")
-        year = input("Julkaisuvuosi: ")
+        key = self.io.read("Kirjan avain: ")
+        title = self.io.read("Kirjan nimi: ")
+        author = self.io.read("Kirjoittaja: ")
+        year = self.io.read("Julkaisuvuosi: ")
 
         new_book = Book(key, author, title, year)
         self.converter.add_book(new_book)
-        print("Kirja lisätty.")
+        self.io.write("Kirja lisätty.")
 
     def list_references(self):
-        print("Viitelista:")
-        print(self.converter.convert())
+        self.io.write("Viitelista:")
+        self.io.write(self.converter.convert())
 
     def run(self):
         self.info()
         while True:
-            print("")
-            command = input("Komento: ")
+            self.io.write("")
+            command = self.io.read("Komento: ")
             if command == "0":
                 break
             elif command == "1":

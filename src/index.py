@@ -1,9 +1,10 @@
 from referencehandler import ReferenceHandler
+from console_io import ConsoleIO
 
 def main():
-    app = ReferenceHandler()
+    io = ConsoleIO()
+    app = ReferenceHandler(io)
     app.run()
 
 if __name__ == "__main__":
     main()
-
