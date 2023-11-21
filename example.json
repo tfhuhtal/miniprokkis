@@ -28,5 +28,14 @@
             "booktitle": "Proceedings of Sample Conferences",
             "year": "2021"
         }
+    },
+    {
+        "type": "book",
+        "key": "abc123",
+        "fields": {
+            "author": "Testaaja Kirjoittaja",
+            "title": "Testi Kirja",
+            "year": "2022"
+        }
     }
 ]

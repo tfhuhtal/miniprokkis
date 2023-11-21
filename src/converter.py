@@ -28,3 +28,13 @@ class Converter:
 
         with open(self.json_file_path, "w") as f:
             f.write("{}")
+
+    def add_book(self, book):
+        book_data = book.to_json()
+        self.json_data.append(book_data)
+        self._save_json()
+
+    def _save_json(self):
+        """Saves the current state of JSON data back to the file."""
+        with open(self.json_file_path, "w") as f:
+            json.dump(self.json_data, f, indent=4)
