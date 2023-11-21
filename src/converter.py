@@ -38,27 +38,36 @@ class Converter:
         """Saves the current state of JSON data back to the file."""
         with open(self.json_file_path, "w", encoding="utf-8") as f:
             json.dump(self.json_data, f, indent=4)
-    
+
     def formatted_print(self):
+        """Print existing reference catalogue to the console with pretty formatting."""
+
+        if (len(self.json_data) < 1):
+            return "Viitelistalle ei ole vielä lisätty yhtään viitettä!"
+
         title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
         pretty_strings = [title]
 
         for i in range(len(self.json_data)):
             pretty_strings.append("")
 
-            entry = self.json_data[i]
-            entry_type =  entry['type']
-            entry_key = entry['key']
-            entry_fields = entry['fields']
+            try:
+                entry = self.json_data[i]
+                entry_type = entry['type']
+                entry_key = entry['key']
+                entry_fields = entry['fields']
 
-            full_row = f"Viite {i + 1} on tyypiltään '{entry_type}'."
-            pretty_strings.append(full_row)
-
-            full_row = f"Sen yksilöity avain on '{entry_key}'."
-            pretty_strings.append(full_row)
-
-            for keys in entry_fields:
-                full_row = f"{keys : >15}: {entry_fields[keys]}"
+                full_row = f"Viite {i + 1} on tyypiltään '{entry_type}'."
                 pretty_strings.append(full_row)
+
+                full_row = f"Sen yksilöity avain on '{entry_key}'."
+                pretty_strings.append(full_row)
+
+                for keys in entry_fields:
+                    full_row = f"{keys : >15}: {entry_fields[keys]}"
+                    pretty_strings.append(full_row)
+
+            except BaseException:
+                return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
 
         return pretty_strings

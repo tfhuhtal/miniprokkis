@@ -1,53 +1,41 @@
 [
-    {
-        "type": "article",
-        "key": "Smith2019",
-        "fields": {
-            "author": "John Smith",
-            "title": "A Sample Article",
-            "journal": "Journal of Samples",
-            "year": "2019"
-        }
-    },
-    {
-        "type": "book",
-        "key": "Doe2020",
-        "fields": {
-            "author": "Jane Doe",
-            "title": "Introduction to Samples",
-            "publisher": "Sample Publishers",
-            "year": "2020"
-        }
-    },
-    {
-        "type": "inproceedings",
-        "key": "Johnson2021",
-        "fields": {
-            "author": "Robert Johnson",
-            "title": "Conference on Samples",
-            "booktitle": "Proceedings of Sample Conferences",
-            "year": "2021"
-        }
-    },
-    {
-        "type": "book",
-        "key": "abc123",
-        "fields": {
-            "author": "Testaaja Kirjoittaja",
-            "title": "Testi Kirja",
-            "year": "2022"
-        }
-    },
-    {
-        "type": "book",
-        "key": "abc123",
-        "fields": {
-            "author": "jaska'",
-            "title": "jonne",
-            "publisher": "martti",
-            "year": "3094",
-            "number": "4",
-            "month": "2"
-        }
-    }
+	{
+		"type": "article",
+		"key": "Smith2019",
+		"fields": {
+			"author": "John Smith",
+			"title": "A Sample Article",
+			"journal": "Journal of Samples",
+			"year": "2019"
+		}
+	},
+	{
+		"type": "book",
+		"key": "Doe2020",
+		"fields": {
+			"author": "Jane Doe",
+			"title": "Introduction to Samples",
+			"publisher": "Sample Publishers",
+			"year": "2020"
+		}
+	},
+	{
+		"type": "inproceedings",
+		"key": "Johnson2021",
+		"fields": {
+			"author": "Robert Johnson",
+			"title": "Conference on Samples",
+			"booktitle": "Proceedings of Sample Conferences",
+			"year": "2021"
+		}
+	},
+	{
+		"type": "book",
+		"key": "abc123",
+		"fields": {
+			"author": "Testaaja Kirjoittaja",
+			"title": "Testi Kirja",
+			"year": "2022"
+		}
+	}
 ]

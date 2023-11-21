@@ -2,6 +2,7 @@ from converter import Converter
 from reference import Reference
 from reference_types import ReferenceTypes
 
+
 class ReferenceHandler:
     def __init__(self, io):
         self.converter = Converter("example.json")
@@ -14,13 +15,13 @@ class ReferenceHandler:
         self.io.write("1 - Lisää lähde")
         self.io.write("2 - Tulosta viitelista")
 
-
     def add(self):
         data = {}
 
-        #Kysy lähteen avainta
+        # Kysy lähteen avainta
         while True:
-            input = self.io.read("\nLähteen avain: ('exit' peruaksesi toiminto) ")
+            input = self.io.read(
+                "\nLähteen avain: ('exit' peruaksesi toiminto) ")
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
                 continue
@@ -32,10 +33,13 @@ class ReferenceHandler:
 
         types = self.reference_types.get_types()
 
-        #Kysy lähteen tyyppiä, jonka pitää löytyä source_types.json tiedostosta
-        self.io.write(f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
+        # Kysy lähteen tyyppiä, jonka pitää löytyä source_types.json
+        # tiedostosta
+        self.io.write(
+            f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
         while True:
-            input = self.io.read("\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
+            input = self.io.read(
+                "\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
                 continue
@@ -47,12 +51,12 @@ class ReferenceHandler:
                 continue
             data["type"] = input
             break
-        
+
         data["fields"] = {}
-        #Hae pakolliset ja vapaaehtoiset kentät lähdetyypin perusteella
+        # Hae pakolliset ja vapaaehtoiset kentät lähdetyypin perusteella
         fields = self.reference_types.get_fields(data["type"])
-        
-        #Kysy pakolliset kentät
+
+        # Kysy pakolliset kentät
         self.io.write("\nPakolliset kentät: ('exit' peruaksesi toiminto) ")
         for field in fields["required"]:
             while True:
@@ -65,9 +69,10 @@ class ReferenceHandler:
                     continue
                 data["fields"][field] = input
                 break
-        
-        #Kysy vapaaehtoiset kentät. Tyhjä input ohittaa kentän
-        self.io.write("\nVapaaehtoiset kentät: ('exit' peruaksesi toiminto, ENTER = seuraava kenttä) ")
+
+        # Kysy vapaaehtoiset kentät. Tyhjä input ohittaa kentän
+        self.io.write(
+            "\nVapaaehtoiset kentät: ('exit' peruaksesi toiminto, ENTER = seuraava kenttä) ")
         for field in fields["optional"]:
             while True:
                 input = self.io.read(f"{field}: ")
