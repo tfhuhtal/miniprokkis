@@ -37,5 +37,17 @@
             "title": "Testi Kirja",
             "year": "2022"
         }
+    },
+    {
+        "type": "book",
+        "key": "abc123",
+        "fields": {
+            "author": "jaska'",
+            "title": "jonne",
+            "publisher": "martti",
+            "year": "3094",
+            "number": "4",
+            "month": "2"
+        }
     }
 ]

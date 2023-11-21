@@ -10,9 +10,9 @@ class ReferenceHandler:
 
     def info(self):
         self.io.write("Komennot: ")
-        self.io.write("0 Sulje sovellus")
-        self.io.write("1 Lisää kirja")
-        self.io.write("2 Tulosta viitelista")
+        self.io.write("0 - Sulje sovellus")
+        self.io.write("1 - Lisää lähde")
+        self.io.write("2 - Tulosta viitelista")
 
 
     def add(self):
@@ -84,8 +84,10 @@ class ReferenceHandler:
         self.io.write("\nLähde lisätty.")
 
     def list_references(self):
-        self.io.write("Viitelista:")
-        self.io.write(self.converter.convert())
+        data = self.converter.formatted_print()
+
+        for entry in data:
+            self.io.write(entry)
 
     def run(self):
         self.info()
