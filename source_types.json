@@ -1,16 +1,16 @@
 {
     "article": {
-            "required": ["author", "title", "journal", "year"],
-            "optional": ["volume", "number", "pages", "month", "note"]
+            "Pakolliset": ["author", "title", "journal", "year"],
+            "Vapaaehtoiset": ["volume", "number", "pages", "month", "note"]
         },
 
     "book": {
-            "required": ["author", "title", "publisher", "year"],
-            "optional": ["volume", "number", "pages", "month", "note"]
+            "Pakolliset": ["author", "title", "publisher", "year"],
+            "Vapaaehtoiset": ["volume", "number", "pages", "month", "note"]
         },
     
     "booklet": {
-            "required": ["title", "author", "howpublished", "year"],
-            "optional": ["editor", "volume", "number", "series", "organization", "month", "note"]
+            "Pakolliset": ["title", "author", "howpublished", "year"],
+            "Vapaaehtoiset": ["editor", "volume", "number", "series", "organization", "month", "note"]
         }
 }
