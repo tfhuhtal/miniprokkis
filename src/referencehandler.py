@@ -16,11 +16,7 @@ class ReferenceHandler:
         self.io.write("2 - Tulosta viitelista")
         self.io.write("3 - Poista lähde")
 
-    def add(self):
-        data = {}
-        existing_keys = self.converter.get_keys()
-
-        # Kysy lähteen avainta
+    def input_ref_key(self, existing_keys: list):
         while True:
             input = self.io.read("\nLähteen avain: ('exit' peruaksesi toiminto) ")
 
@@ -33,64 +29,81 @@ class ReferenceHandler:
                 continue
 
             if input == "exit":
-                self.io.write("\nToiminto peruttu")
-                return
-
-            data["key"] = input
-            break
-
-        types = self.reference_types.get_types()
-
-        # Kysy lähteen tyyppiä, jonka pitää löytyä source_types.json
-        # tiedostosta
+                return 0
+            
+            return input
+    
+    def input_ref_type(self, types: list):
         self.io.write(
             f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
+        
         while True:
             input = self.io.read(
                 "\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
+            
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
                 continue
+
             if input == "exit":
-                self.io.write("\nToiminto peruttu")
-                return
+                return 0
+            
             if input not in types:
                 self.io.write("\nTyyppi ei käytössä")
                 continue
-            data["type"] = input
-            break
 
-        data["fields"] = {}
+            return input
+        
+    def input_ref_fields(self, data: dict, fields: dict, field_type: str):
+        self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
+        for field in fields[field_type]:
+            while True:
+                input = self.io.read(f"{field}: ")
+                if input == "exit":
+                    return 0
+                if input == "" and field_type == "Pakolliset":
+                    self.io.write("\nKenttä ei voi olla tyhjä")
+                    continue
+                else:
+                    break
+            if input != "":
+                data["fields"][field] = input
+        return 1
+
+    def add(self):
+        data = {}
+
+        # Kysy lähteen avainta
+        existing_keys = self.converter.get_keys()
+
+        input = self.input_ref_key(existing_keys)
+        if input == 0:
+            self.io.write("\nToiminto peruttu")
+            return 0
+        data["key"] = input
+            
+        # Kysy lähteen tyyppiä, jonka pitää löytyä source_types.json
+        # tiedostosta
+        types = self.reference_types.get_types()
+        input = self.input_ref_type(types)
+        if input == 0:
+            self.io.write("\nToiminto peruttu")
+            return 0
+        data["type"] = input
+
         # Hae pakolliset ja vapaaehtoiset kentät lähdetyypin perusteella
+        data["fields"] = {}
         fields = self.reference_types.get_fields(data["type"])
 
         # Kysy pakolliset kentät
-        self.io.write("\nPakolliset kentät: ('exit' peruaksesi toiminto) ")
-        for field in fields["required"]:
-            while True:
-                input = self.io.read(f"{field}: ")
-                if input == "exit":
-                    self.io.write("\nToiminto peruttu")
-                    return
-                if input == "":
-                    self.io.write("\nKenttä ei voi olla tyhjä")
-                    continue
-                data["fields"][field] = input
-                break
+        if self.input_ref_fields(data, fields, "Pakolliset") == 0:
+            self.io.write("\nToiminto peruttu")
+            return 0
 
         # Kysy vapaaehtoiset kentät. Tyhjä input ohittaa kentän
-        self.io.write(
-            "\nVapaaehtoiset kentät: ('exit' peruaksesi toiminto, ENTER = seuraava kenttä) ")
-        for field in fields["optional"]:
-            while True:
-                input = self.io.read(f"{field}: ")
-                if input == "exit":
-                    self.io.write("\nToiminto peruttu")
-                    return
-                if input == "":
-                    break
-                data["fields"][field] = input
-                break
+        if self.input_ref_fields(data, fields, "Vapaaehtoiset") == 0:
+            self.io.write("\nToiminto peruttu")
+            return 0
 
         new_reference = Reference(data)
         self.converter.add_reference(new_reference)
