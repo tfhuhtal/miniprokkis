@@ -12,6 +12,18 @@ class Converter:
 
         return json.dumps(self.json_data)
 
+    def get_keys(self):
+        if (len(self.json_data) < 1):
+            return []
+
+        keys = []
+
+        for i in range(len(self.json_data)):
+            entry = self.json_data[i]
+            keys.append(entry['key'])
+        
+        return keys
+
     def _load_json(self):
         """Loads json data from file. If file does not exist, creates new one with default data."""
 

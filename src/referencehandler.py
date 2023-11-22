@@ -18,17 +18,24 @@ class ReferenceHandler:
 
     def add(self):
         data = {}
+        existing_keys = self.converter.get_keys()
 
         # Kysy lähteen avainta
         while True:
-            input = self.io.read(
-                "\nLähteen avain: ('exit' peruaksesi toiminto) ")
+            input = self.io.read("\nLähteen avain: ('exit' peruaksesi toiminto) ")
+
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
                 continue
+
+            if input in existing_keys:
+                self.io.write(f"\nAvain '{input}' on jo käytössä. Käytä jotain toista avainta.")
+                continue
+
             if input == "exit":
                 self.io.write("\nToiminto peruttu")
                 return
+
             data["key"] = input
             break
 
