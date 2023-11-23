@@ -48,5 +48,16 @@
             "publisher": "testi poisto",
             "year": "2020"
         }
+    },
+    {
+        "type": "article",
+        "key": "asdf1",
+        "fields": {
+            "author": "kissa",
+            "title": "kissa",
+            "journal": "asdfs",
+            "year": "asdfsa",
+            "volume": "f"
+        }
     }
 ]
