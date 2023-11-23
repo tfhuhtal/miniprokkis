@@ -15,6 +15,7 @@ class ReferenceHandler:
         self.io.write("1 - Lisää lähde")
         self.io.write("2 - Tulosta viitelista")
         self.io.write("3 - Poista lähde")
+        self.io.write("4 - Tulosta bibtex -lähdelista")
 
     def input_ref_key(self, existing_keys: list):
         while True:
@@ -150,6 +151,8 @@ class ReferenceHandler:
                 self.list_references()
             elif command == "3":
                 self.delete()
+            elif command == "4":
+                self.print_bibtex()
             else:
                 self.info()
 
@@ -158,3 +161,7 @@ class ReferenceHandler:
         for type in types:
             string += type + " "
         return string
+    
+    def print_bibtex(self):
+        data = self.converter.convert_json_to_bibtex()
+        self.io.write(data)
