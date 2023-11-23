@@ -9,6 +9,24 @@ class TestConverter(unittest.TestCase):
     def test_convert(self):
         self.assertEqual(self.converter.convert(), "{}")
 
+    def test_concerter_get_keys_empty(self):
+        self.assertEqual(self.converter.get_keys(), [])
+
+    def test_concerter_get_keys_with_keys(self):
+        self.converter.json_data = [{'type': 'article',
+                                     'key': 'Smith2019',
+                                     'fields': {'author': 'John Smith',
+                                                'title': 'A Sample Article',
+                                                'journal': 'Journal of Samples',
+                                                'year': '2019'}},
+                                    {'type': 'book',
+                                     'key': 'Doe2020',
+                                     'fields': {'author': 'Jane Doe',
+                                                'title': 'Introduction to Samples',
+                                                'publisher': 'Sample Publishers',
+                                                'year': '2020'}}]
+        self.assertEqual(self.converter.get_keys(), ['Smith2019', 'Doe2020'])
+
     def test_formatted_printing(self):
         self.converter.json_data = [{'type': 'article',
                                      'key': 'Smith2019',
