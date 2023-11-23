@@ -18,42 +18,44 @@ class ReferenceHandler:
 
     def input_ref_key(self, existing_keys: list):
         while True:
-            input = self.io.read("\nLähteen avain: ('exit' peruaksesi toiminto) ")
+            input = self.io.read(
+                "\nLähteen avain: ('exit' peruaksesi toiminto) ")
 
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
                 continue
 
             if input in existing_keys:
-                self.io.write(f"\nAvain '{input}' on jo käytössä. Käytä jotain toista avainta.")
+                self.io.write(
+                    f"\nAvain '{input}' on jo käytössä. Käytä jotain toista avainta.")
                 continue
 
             if input == "exit":
                 return 0
-            
+
             return input
-    
+
     def input_ref_type(self, types: list):
         self.io.write(
             f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
-        
+
         while True:
             input = self.io.read(
                 "\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
-            
+
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
                 continue
 
             if input == "exit":
                 return 0
-            
+
             if input not in types:
                 self.io.write("\nTyyppi ei käytössä")
                 continue
 
             return input
-        
+
     def input_ref_fields(self, data: dict, fields: dict, field_type: str):
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
         for field in fields[field_type]:
@@ -81,7 +83,7 @@ class ReferenceHandler:
             self.io.write("\nToiminto peruttu")
             return 0
         data["key"] = input
-            
+
         # Kysy lähteen tyyppiä, jonka pitää löytyä source_types.json
         # tiedostosta
         types = self.reference_types.get_types()
@@ -114,7 +116,7 @@ class ReferenceHandler:
 
         for entry in data:
             self.io.write(entry)
-            
+
     def delete(self):
         # Kysy lähteen avainta
         key = ""
@@ -130,11 +132,11 @@ class ReferenceHandler:
             key = input
             existing_keys = self.converter.get_keys()
             if key not in existing_keys:
-            	self.io.write("\nLähdettä ei voitu poistaa. Tarkista avain.")
+                self.io.write("\nLähdettä ei voitu poistaa. Tarkista avain.")
             else:
-            	self.converter.delete_reference(key)
-            	self.io.write("\nLähde poistettu.")                	
-    
+                self.converter.delete_reference(key)
+                self.io.write("\nLähde poistettu.")
+
     def run(self):
         self.info()
         while True:
