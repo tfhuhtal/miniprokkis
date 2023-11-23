@@ -28,5 +28,16 @@
             "booktitle": "Proceedings of Sample Conferences",
             "year": "2021"
         }
+    },
+    {
+        "type": "article",
+        "key": "asdf1",
+        "fields": {
+            "author": "kissa",
+            "title": "kissa",
+            "journal": "asdfs",
+            "year": "asdfsa",
+            "volume": "f"
+        }
     }
 ]
