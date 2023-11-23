@@ -91,6 +91,7 @@ class Converter:
             if entry_key == reference_key:
                 self.json_data.pop(i)
                 self._save_json()
+                return
 
     def convert_json_to_bibtex(self):
         self.bibtex_entries = []

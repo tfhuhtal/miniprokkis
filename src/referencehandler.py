@@ -123,11 +123,8 @@ class ReferenceHandler:
         key = ""
         while True:
             input = self.io.read(
-                "\nLähteen avain: ('exit' peruaksesi toiminto) ")
+                "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             if input == "":
-                self.io.write("\nKenttä ei voi olla tyhjä")
-                continue
-            if input == "exit":
                 self.io.write("\nToiminto peruttu")
                 return
             key = input
@@ -137,6 +134,7 @@ class ReferenceHandler:
             else:
                 self.converter.delete_reference(key)
                 self.io.write("\nLähde poistettu.")
+                return           
 
     def run(self):
         self.info()

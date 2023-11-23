@@ -7,9 +7,11 @@ class TestConverter(unittest.TestCase):
         self.converter = Converter("exampl.json")
 
     def test_convert(self):
-        self.assertEqual(self.converter.convert(), "{}")
+        self.converter.json_data = []
+        self.assertEqual(self.converter.convert(), "[]")
 
     def test_concerter_get_keys_empty(self):
+        self.converter.json_data = []
         self.assertEqual(self.converter.get_keys(), [])
 
     def test_concerter_get_keys_with_keys(self):
@@ -63,3 +65,36 @@ class TestConverter(unittest.TestCase):
         self.assertEqual(
             "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa.",
             return_value)
+
+    def test_delete_reference(self):
+        self.converter.json_data = [{'type': 'article',
+                                     'key': 'testi',
+                                     'fields': {'author': 'John Smith',
+                                                'title': 'A Sample Article',
+                                                'journal': 'Journal of Samples',
+                                                'year': '2019'}},
+                                    {'type': 'article',
+                                     'key': 'Smith2019',
+                                     'fields': {'author': 'John Smith',
+                                                'title': 'A Sample Article',
+                                                'journal': 'Journal of Samples',
+                                                'year': '2019'}},
+                                    {'type': 'book',
+                                     'key': 'Doe2020',
+                                     'fields': {'author': 'Jane Doe',
+                                                'title': 'Introduction to Samples',
+                                                'publisher': 'Sample Publishers',
+                                                'year': '2020'}}]
+        self.converter.delete_reference('testi')
+        self.assertEqual(self.converter.json_data, [{'type': 'article',
+                                     'key': 'Smith2019',
+                                     'fields': {'author': 'John Smith',
+                                                'title': 'A Sample Article',
+                                                'journal': 'Journal of Samples',
+                                                'year': '2019'}},
+                                    {'type': 'book',
+                                     'key': 'Doe2020',
+                                     'fields': {'author': 'Jane Doe',
+                                                'title': 'Introduction to Samples',
+                                                'publisher': 'Sample Publishers',
+                                                'year': '2020'}}])
