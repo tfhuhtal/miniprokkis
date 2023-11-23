@@ -128,9 +128,13 @@ class ReferenceHandler:
                 self.io.write("\nToiminto peruttu")
                 return
             key = input
-            self.converter.delete_reference(key)
-            self.io.write("\nLähde poistettu.")                	
-
+            existing_keys = self.converter.get_keys()
+            if key not in existing_keys:
+            	self.io.write("\nLähdettä ei voitu poistaa. Tarkista avain.")
+            else:
+            	self.converter.delete_reference(key)
+            	self.io.write("\nLähde poistettu.")                	
+    
     def run(self):
         self.info()
         while True:
