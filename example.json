@@ -38,26 +38,5 @@
             "publisher": "Joku",
             "year": "2320"
         }
-    },
-    {
-        "type": "book",
-        "key": "123Ar",
-        "fields": {
-            "author": "testi poisto",
-            "title": "testi poisto",
-            "publisher": "testi poisto",
-            "year": "2020"
-        }
-    },
-    {
-        "type": "article",
-        "key": "asdf1",
-        "fields": {
-            "author": "kissa",
-            "title": "kissa",
-            "journal": "asdfs",
-            "year": "asdfsa",
-            "volume": "f"
-        }
     }
 ]
