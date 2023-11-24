@@ -4,8 +4,8 @@ from reference_types import ReferenceTypes
 
 
 class ReferenceHandler:
-    def __init__(self, io):
-        self.converter = Converter("example.json")
+    def __init__(self, io, converter=None):
+        self.converter = converter if converter else Converter("example.json")
         self.io = io
         self.reference_types = ReferenceTypes("source_types.json")
 
