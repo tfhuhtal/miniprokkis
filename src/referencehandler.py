@@ -1,6 +1,7 @@
 from converter import Converter
 from reference import Reference
 from reference_types import ReferenceTypes
+import re
 
 
 class ReferenceHandler:
@@ -163,3 +164,9 @@ class ReferenceHandler:
     def print_bibtex(self):
         data = self.converter.convert_json_to_bibtex()
         self.io.write(data)
+
+    def validate_input(self, field: str):
+        if field == "year" and not re.match(r"^\d{4}$", field):
+            return "year-kentän tulee olla 4 numeroinen"
+        if field == "pages" and not re.match(r"^\d+(--\d+)?(, \d+(--\d+)?)*$", field):
+            return "pages-kentän tulee olla muotoa '1' tai '1--5' tai '1, 3--5, 7'"
