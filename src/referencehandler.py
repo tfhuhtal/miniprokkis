@@ -63,13 +63,13 @@ class ReferenceHandler:
         for field in fields[field_type]:
             while True:
                 input = self.io.read(f"{field}: ")
+                if input == "exit":
+                    return 0
                 validate_result = self.validate_input(input, field)
                 if input != "":
                     if validate_result != 1:
                         self.io.write(validate_result)
                         continue
-                if input == "exit":
-                    return 0
                 if input == "" and field_type == "Pakolliset":
                     self.io.write("\nKenttä ei voi olla tyhjä")
                     continue
