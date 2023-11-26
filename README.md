@@ -17,7 +17,7 @@ https://docs.google.com/spreadsheets/d/1B0Ccr3oT1f9iR5cF_5-hlZYyvMw3nH5-nHtba_lr
 - alusta eka projekti ```poetry install``` komennolla.
 - tämän jälkeen voit käyttää komentoja ```poetry run invoke start``` ohjelman ajamiseen, ```poetry run invoke test``` testaamiseen, ```poetry run invoke coverage``` kattavuusraportin tulostamiseen ja ```poetry run invoke clean``` koodin muotoiluun.
 
-## Defition of Done
+## Definition of Done
   - All acceptance criteria are met
   - All necessary tests have been successfully completed
   - We have had multiple check the work
