@@ -64,9 +64,10 @@ class ReferenceHandler:
             while True:
                 input = self.io.read(f"{field}: ")
                 validate_result = self.validate_input(input, field)
-                if validate_result != 1:
-                    self.io.write(validate_result)
-                    continue
+                if input != "":
+                    if validate_result != 1:
+                        self.io.write(validate_result)
+                        continue
                 if input == "exit":
                     return 0
                 if input == "" and field_type == "Pakolliset":
