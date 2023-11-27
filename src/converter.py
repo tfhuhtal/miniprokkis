@@ -57,14 +57,14 @@ class Converter:
         if (len(self.json_data) < 1):
             return "Viitelistalle ei ole vielä lisätty yhtään viitettä!"
 
-        title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
-        pretty_strings = [title]
-
         if alphabetical == True:
+            title = f"Viitelista aakkosjärjestyksessä - yhteensä {len(self.json_data)} viite(ttä):"
+            pretty_strings = [title]
+
             all_keys = self.get_keys()
             all_keys.sort()
 
-            for i in range(len(all_keys)):
+            for i in range(len(self.json_data)):
                 this_entry = []
                 this_entry.append("")
 
@@ -96,6 +96,9 @@ class Converter:
                     pretty_strings.append(line)
         
             return pretty_strings
+
+        title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
+        pretty_strings = [title]
 
         for i in range(len(self.json_data)):
             pretty_strings.append("")
