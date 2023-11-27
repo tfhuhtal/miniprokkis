@@ -1,21 +1,14 @@
 *** Settings ***
+Library  ../AppLibrary.py
 
-Library ../AppLibrary.py
+*** Variables ***
+${DELAY}  1.0 seconds
 
 *** Keywords ***
 
-Input Exit
-    Input  0
+Run App
+    Run Application
 
-Input Add Refenrence
-    Input  1
-
-Input Print Refenrences
-    Input  2
-
-Input Delete Refenrence
-    Input  3
-
-Input Print Bibtex
-    Input  4
-
+Input List References
+    Input Text  2
+    Input  ENTER
