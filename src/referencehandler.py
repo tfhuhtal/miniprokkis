@@ -8,7 +8,7 @@ class ReferenceHandler:
     def __init__(self, io, converter=None):
         self.converter = converter if converter else Converter("example.json")
         self.io = io
-        self.reference_types = ReferenceTypes("source_types.json")
+        self.reference_types = ReferenceTypes("src/assets/source_types.json")
 
     def info(self):
         self.io.write("Komennot: ")
@@ -177,6 +177,7 @@ class ReferenceHandler:
     
     def print_bibtex(self):
         data = self.converter.convert_json_to_bibtex()
+        self.io.write("\nViitelista bibtex muodossa:\n")
         self.io.write(data)
 
     def validate_input(self, input, field: str):
