@@ -27,16 +27,25 @@ class ConverterStub:
 
 
 class ConsoleIOStub:
-    def __init__(self):
-        self.inputs = []
+    def __init__(self, inputs=None):
+        self.inputs = inputs or []
         self.outputs = []
 
     def write(self, value):
         self.outputs.append(value)
+        print(value)
 
-    def read(self, prompt):
-        self.outputs.append(prompt)
-        return self.inputs.pop(0) if self.inputs else ''
+    def read(self):
+        if len(self.inputs) > 0:
+            return self.inputs.pop(0)
+        else:
+            return ""
+
+    def add_input(self, value, val=False):
+        if not val:
+            self.inputs.append(input(value))
+        else:
+            self.inputs.append(value)
 
 class TestReferenceHandler(unittest.TestCase):
     def setUp(self):
