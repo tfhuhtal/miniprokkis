@@ -45,6 +45,12 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+output.xml
+interactive_console_output.xml
+exampl.json
+example.json
+log.html
+report.html
 *.cover
 *.py,cover
 .hypothesis/
