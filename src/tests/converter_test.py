@@ -42,7 +42,7 @@ class TestConverter(unittest.TestCase):
                                                 'title': 'Introduction to Samples',
                                                 'publisher': 'Sample Publishers',
                                                 'year': '2020'}}]
-        return_value = self.converter.formatted_print()
+        return_value = self.converter.formatted_print(False)
         self.assertEqual(15, len(return_value))
         self.assertEqual(
             "Viitelista - yhteensä 2 viite(ttä):",
@@ -61,7 +61,7 @@ class TestConverter(unittest.TestCase):
                                                 'title': 'Introduction to Samples',
                                                 'publisher': 'Sample Publishers',
                                                 'year': '2020'}}]
-        return_value = self.converter.formatted_print()
+        return_value = self.converter.formatted_print(False)
         self.assertEqual(
             "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa.",
             return_value)

@@ -14,7 +14,7 @@ class ReferenceHandler:
         self.io.write("Komennot: ")
         self.io.write("0 - Sulje sovellus")
         self.io.write("1 - Lisää lähde")
-        self.io.write("2 - Tulosta viitelista")
+        self.io.write("2 - Tulosta viitelista (-a aakkosjärjestyksessä)")
         self.io.write("3 - Poista lähde")
         self.io.write("4 - Tulosta bibtex -lähdelista")
 
@@ -62,7 +62,7 @@ class ReferenceHandler:
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
         for field in fields[field_type]:
             while True:
-                self.io.add_input(f"{field}: ")
+                self.io.add_input(f"{field : >12}: ")
                 input = self.io.read()
                 if input == "exit":
                     return 0
@@ -119,8 +119,8 @@ class ReferenceHandler:
         self.converter.add_reference(new_reference)
         self.io.write("\nLähde lisätty.")
 
-    def list_references(self):
-        data = self.converter.formatted_print()
+    def list_references(self, alphabetical):
+        data = self.converter.formatted_print(alphabetical)
 
         for entry in data:
             self.io.write(entry)
@@ -154,7 +154,9 @@ class ReferenceHandler:
             elif command == "1":
                 self.add()
             elif command == "2":
-                self.list_references()
+                self.list_references(False)
+            elif command == "2 -a":
+                self.list_references(True)
             elif command == "3":
                 self.delete()
             elif command == "4":
