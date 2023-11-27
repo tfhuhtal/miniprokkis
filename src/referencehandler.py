@@ -20,8 +20,8 @@ class ReferenceHandler:
 
     def input_ref_key(self, existing_keys: list):
         while True:
-            input = self.io.read(
-                "\nLähteen avain: ('exit' peruaksesi toiminto) ")
+            self.io.add_input("\nLähteen avain: ('exit' peruaksesi toiminto) ")
+            input = self.io.read()
 
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
@@ -42,8 +42,8 @@ class ReferenceHandler:
             f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
 
         while True:
-            input = self.io.read(
-                "\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
+            self.io.add_input("\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
+            input = self.io.read()
 
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
@@ -62,7 +62,8 @@ class ReferenceHandler:
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
         for field in fields[field_type]:
             while True:
-                input = self.io.read(f"{field}: ")
+                self.io.add_input(f"{field}: ")
+                input = self.io.read()
                 if input == "exit":
                     return 0
                 validate_result = self.validate_input(input, field)
@@ -128,8 +129,8 @@ class ReferenceHandler:
         # Kysy lähteen avainta
         key = ""
         while True:
-            input = self.io.read(
-                "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+            self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+            input = self.io.read()
             if input == "":
                 self.io.write("\nToiminto peruttu")
                 return
@@ -146,7 +147,8 @@ class ReferenceHandler:
         self.info()
         while True:
             self.io.write("")
-            command = self.io.read("Komento: ")
+            self.io.add_input("komento: ")
+            command = self.io.read()
             if command == "0":
                 break
             elif command == "1":
