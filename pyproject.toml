@@ -12,6 +12,7 @@ autopep8 = "^2.0.4"
 coverage = "^7.3.2"
 invoke = "^2.2.0"
 pylint = "^3.0.2"
+robotframework = "^6.1.1"
 
 
 [tool.poetry.group.dev.dependencies]
