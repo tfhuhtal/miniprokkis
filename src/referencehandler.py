@@ -20,7 +20,8 @@ class ReferenceHandler:
 
     def input_ref_key(self, existing_keys: list):
         while True:
-            self.io.add_input("\nLähteen avain: ('exit' peruaksesi toiminto) ")
+            if len(self.io.inputs) == 0:
+                self.io.add_input("\nLähteen avain: ('exit' peruaksesi toiminto) ")
             input = self.io.read()
 
             if input == "":
@@ -42,7 +43,8 @@ class ReferenceHandler:
             f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
 
         while True:
-            self.io.add_input("\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
+            if len(self.io.inputs) == 0:
+                self.io.add_input("\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
             input = self.io.read()
 
             if input == "":
@@ -62,7 +64,8 @@ class ReferenceHandler:
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
         for field in fields[field_type]:
             while True:
-                self.io.add_input(f"{field : >12}: ")
+                if len(self.io.inputs) == 0:
+                    self.io.add_input(f"{field : >12}: ")
                 input = self.io.read()
                 if input == "exit":
                     return 0
@@ -129,8 +132,8 @@ class ReferenceHandler:
         # Kysy lähteen avainta
         key = ""
         while True:
-
-            self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+            if len(self.io.inputs) == 0:
+                self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
             if input == "":
                 self.io.write("\nToiminto peruttu")

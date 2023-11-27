@@ -54,7 +54,7 @@ class TestReferenceHandler(unittest.TestCase):
         self.handler = ReferenceHandler(self.io_stub, self.converter_stub)
 
     def test_add_reference(self):
-        self.io_stub.inputs = ['ref_key', 'book', 'author', 'title', 'publisher', '2000', '', '', '', '', '']
+        self.io_stub.inputs = ['ref_key', 'book', 'author', 'title', 'publisher', '2000', '', '', '', '', '', '']
         self.handler.add()
         self.assertEqual(self.io_stub.outputs[-1], "\nLähde lisätty.")
 
