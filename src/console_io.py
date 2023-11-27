@@ -13,5 +13,8 @@ class ConsoleIO:
         else:
             return ""
 
-    def add_input(self, value):
-        self.inputs.append(input(value))
+    def add_input(self, value, val=False):
+        if not val:
+            self.inputs.append(input(value))
+        else:
+            self.inputs.append(value)

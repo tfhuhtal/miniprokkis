@@ -129,6 +129,7 @@ class ReferenceHandler:
         # Kysy lähteen avainta
         key = ""
         while True:
+
             self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
             if input == "":
@@ -147,7 +148,8 @@ class ReferenceHandler:
         self.info()
         while True:
             self.io.write("")
-            self.io.add_input("komento: ")
+            if len(self.io.inputs) == 0:
+                self.io.add_input("komento: ")
             command = self.io.read()
             if command == "0":
                 break

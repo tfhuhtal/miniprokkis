@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.12 on linux)" generated="20231127 18:52:22.404" rpa="false" schemaversion="4">
+<suite id="s1" name="Tests" source="/home/tuomas/kurssit/projekti/miniprokkis/src/tests">
+<suite id="s1-s1" name="Print Reference" source="/home/tuomas/kurssit/projekti/miniprokkis/src/tests/print_reference.robot">
+<test id="s1-s1-t1" name="AddReferenceAndList" line="5">
+<kw name="Input" library="AppLibrary">
+<arg>2</arg>
+<status status="PASS" starttime="20231127 18:52:22.418" endtime="20231127 18:52:22.418"/>
+</kw>
+<kw name="Input" library="AppLibrary">
+<arg>0</arg>
+<status status="PASS" starttime="20231127 18:52:22.418" endtime="20231127 18:52:22.418"/>
+</kw>
+<kw name="Run Application" library="AppLibrary">
+<msg timestamp="20231127 18:52:22.418" level="INFO">Komennot: 
+0 - Sulje sovellus
+1 - Lisää lähde
+2 - Tulosta viitelista
+3 - Poista lähde
+4 - Tulosta bibtex -lähdelista
+
+Viitelista - yhteensä 4 viite(ttä):
+
+Viite 1 on tyypiltään 'book'.
+Sen yksilöity avain on 'äää'.
+         author: ääääää
+          title: ääää
+      publisher: ääää
+           year: äää
+
+Viite 2 on tyypiltään 'book'.
+Sen yksilöity avain on 'John2020'.
+         author: Johnson
+          title: Johnsonisms
+      publisher: J.Johnson
+           year: 2020
+
+Viite 3 on tyypiltään 'booklet'.
+Sen yksilöity avain on 'JDoe1980'.
+          title: Jane Doe
+         author: Jane Doe
+   howpublished: 1980
+           year: 1980
+
+Viite 4 on tyypiltään 'book'.
+Sen yksilöity avain on 'Alba2302'.
+         author: Alba
+          title: On
+      publisher: Joku
+           year: 2320</msg>
+<status status="PASS" starttime="20231127 18:52:22.418" endtime="20231127 18:52:22.418"/>
+</kw>
+<kw name="Output Should Contain" library="AppLibrary">
+<arg>Viitelista</arg>
+<status status="PASS" starttime="20231127 18:52:22.418" endtime="20231127 18:52:22.419"/>
+</kw>
+<status status="PASS" starttime="20231127 18:52:22.417" endtime="20231127 18:52:22.419"/>
+</test>
+<status status="PASS" starttime="20231127 18:52:22.414" endtime="20231127 18:52:22.419"/>
+</suite>
+<status status="PASS" starttime="20231127 18:52:22.404" endtime="20231127 18:52:22.419"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Print Reference">Tests.Print Reference</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

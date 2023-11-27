@@ -1,10 +1,10 @@
 *** Settings ***
-Resource  resource.robot
+Resource    resource.robot
 
 *** Test Cases ***
-Print Reference List
-    Input  ENTER
-    Input  2
-    Input  ENTER
-    Run App
-    Output Should Contain  ""
+AddReferenceAndList
+    Input    2
+    Input    0
+    Run Application
+    Output Should Contain    Viitelista  
+*** Keywords ***
