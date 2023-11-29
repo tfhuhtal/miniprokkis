@@ -54,54 +54,27 @@ class Converter:
     def formatted_print(self, alphabetical):
         """Print existing reference catalogue to the console with pretty formatting."""
 
-        if (len(self.json_data) < 1):
-            return "Viitelistalle ei ole vielä lisätty yhtään viitettä!"
+        try:
+            if len(self.json_data) < 1:
+                return "Viitelistalle ei ole vielä lisätty yhtään viitettä!"
+        except BaseException:
+            return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
 
-        if alphabetical == True:
+        if alphabetical is True:
             title = f"Viitelista aakkosjärjestyksessä - yhteensä {len(self.json_data)} viite(ttä):"
-            pretty_strings = [title]
-
-            all_keys = self.get_keys()
-            all_keys.sort()
-
-            for i in range(len(self.json_data)):
-                this_entry = []
-                this_entry.append("")
-
-                try:
-                    entry = self.json_data[i]
-                    entry_type = entry['type']
-                    entry_key = entry['key']
-                    entry_fields = entry['fields']
-
-                    full_row = f"Viite {i + 1} on tyypiltään '{entry_type}'."
-                    this_entry.append(full_row)
-
-                    full_row = f"Sen yksilöity avain on '{entry_key}'."
-                    this_entry.append(full_row)
-
-                    for keys in entry_fields:
-                        full_row = f"{keys : >15}: {entry_fields[keys]}"
-                        this_entry.append(full_row)
-                    
-                    target_index = all_keys.index(entry_key)
-
-                    all_keys[target_index] = this_entry
-
-                except BaseException:
-                    return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
-            
-            for entry in all_keys:
-                for line in entry:
-                    pretty_strings.append(line)
+        else:
+            title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
         
-            return pretty_strings
-
-        title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
         pretty_strings = [title]
 
+        all_keys = self.get_keys()
+
+        if alphabetical is True:
+            all_keys = sorted(all_keys, key=str.casefold)
+
         for i in range(len(self.json_data)):
-            pretty_strings.append("")
+            this_entry = []
+            this_entry.append("")
 
             try:
                 entry = self.json_data[i]
@@ -110,18 +83,26 @@ class Converter:
                 entry_fields = entry['fields']
 
                 full_row = f"Viite {i + 1} on tyypiltään '{entry_type}'."
-                pretty_strings.append(full_row)
+                this_entry.append(full_row)
 
                 full_row = f"Sen yksilöity avain on '{entry_key}'."
-                pretty_strings.append(full_row)
+                this_entry.append(full_row)
 
                 for keys in entry_fields:
                     full_row = f"{keys : >15}: {entry_fields[keys]}"
-                    pretty_strings.append(full_row)
+                    this_entry.append(full_row)
+                
+                target_index = all_keys.index(entry_key)
+
+                all_keys[target_index] = this_entry
 
             except BaseException:
                 return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
-
+        
+        for entry in all_keys:
+            for line in entry:
+                pretty_strings.append(line)
+        
         return pretty_strings
 
     def delete_reference(self, reference_key):

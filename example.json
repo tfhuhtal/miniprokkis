@@ -38,5 +38,15 @@
             "booktitle": "T\u00e4rke\u00e4 Kirja 100 000",
             "year": "3845"
         }
+    },
+    {
+        "type": "article",
+        "key": "JBd",
+        "fields": {
+            "author": "matias",
+            "title": "matiaksen artikkeli",
+            "journal": "megajournal",
+            "year": "2023"
+        }
     }
 ]
