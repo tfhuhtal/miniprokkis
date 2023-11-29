@@ -27,6 +27,7 @@ class TestConverter(unittest.TestCase):
                                                 'title': 'Introduction to Samples',
                                                 'publisher': 'Sample Publishers',
                                                 'year': '2020'}}]
+
         self.assertEqual(self.converter.get_keys(), ['Smith2019', 'Doe2020'])
 
     def test_formatted_printing(self):
@@ -42,12 +43,34 @@ class TestConverter(unittest.TestCase):
                                                 'title': 'Introduction to Samples',
                                                 'publisher': 'Sample Publishers',
                                                 'year': '2020'}}]
+
         return_value = self.converter.formatted_print(False)
         self.assertEqual(15, len(return_value))
         self.assertEqual(
             "Viitelista - yhteensä 2 viite(ttä):",
             return_value[0])
         self.assertEqual("Sen yksilöity avain on 'Doe2020'.", return_value[10])
+
+    def test_formatted_alphabetical_printing(self):
+        self.converter.json_data = [{'type': 'article',
+                                     'key': 'Smith2019',
+                                     'fields': {'author': 'John Smith',
+                                                'title': 'A Sample Article',
+                                                'journal': 'Journal of Samples',
+                                                'year': '2019'}},
+                                    {'type': 'book',
+                                     'key': 'Doe2020',
+                                     'fields': {'author': 'Jane Doe',
+                                                'title': 'Introduction to Samples',
+                                                'publisher': 'Sample Publishers',
+                                                'year': '2020'}}]
+                                
+        return_value = self.converter.formatted_print(True)
+        self.assertEqual(15, len(return_value))
+        self.assertEqual(
+            "Viitelista aakkosjärjestyksessä - yhteensä 2 viite(ttä):",
+            return_value[0])
+        self.assertEqual("Sen yksilöity avain on 'Smith2019'.", return_value[10])
 
     def test_formatted_printing_error_handling(self):
         self.converter.json_data = [{'type': 'article',
