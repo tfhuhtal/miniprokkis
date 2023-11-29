@@ -72,7 +72,7 @@ class ReferenceHandler:
                 validate_result = self.validate_input(input, field)
                 if input != "":
                     if validate_result != 1:
-                        self.io.write(f"        ({validate_result})")
+                        self.io.write(f"Virhe: ({validate_result})")
                         continue
                 if input == "" and field_type == "Pakolliset":
                     self.io.write("\nKenttä ei voi olla tyhjä")

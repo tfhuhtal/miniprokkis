@@ -55,13 +55,13 @@ class Converter:
         if (len(self.json_data) < 1):
             return []
 
-        authors = set()
+        authors = []
 
         for i in range(len(self.json_data)):
             entry = self.json_data[i]
-            authors.add(entry['fields']['author'])
+            authors.append(entry['fields']['author'])
 
-        return list(authors)
+        return authors
 
     def formatted_print(self, alphabetical):
         """Print existing reference catalogue to the console with pretty formatting."""
@@ -104,13 +104,15 @@ class Converter:
                 
                 target_index = all_authors.index(entry_fields['author'])
 
-
-                while True:
-                    if final_list[target_index] == "None":
-                        final_list[target_index] = this_entry
-                        break
-                    else:
-                        target_index += 1
+                if alphabetical is True:
+                    while True:
+                        if final_list[target_index] == "None":
+                            final_list[target_index] = this_entry
+                            break
+                        else:
+                            target_index += 1
+                else:
+                    final_list[i] = this_entry
 
             except BaseException:
                 return "Viitelistan tulostuksessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
