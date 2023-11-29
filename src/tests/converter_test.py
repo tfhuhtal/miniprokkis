@@ -45,11 +45,10 @@ class TestConverter(unittest.TestCase):
                                                 'year': '2020'}}]
 
         return_value = self.converter.formatted_print(False)
-        self.assertEqual(15, len(return_value))
+        self.assertEqual(13, len(return_value))
         self.assertEqual(
             "Viitelista - yhteensä 2 viite(ttä):",
             return_value[0])
-        self.assertEqual("Sen yksilöity avain on 'Doe2020'.", return_value[10])
 
     def test_formatted_alphabetical_printing(self):
         self.converter.json_data = [{'type': 'article',
@@ -66,11 +65,11 @@ class TestConverter(unittest.TestCase):
                                                 'year': '2020'}}]
                                 
         return_value = self.converter.formatted_print(True)
-        self.assertEqual(15, len(return_value))
+        self.assertEqual(13, len(return_value))
         self.assertEqual(
-            "Viitelista aakkosjärjestyksessä - yhteensä 2 viite(ttä):",
+            "Viitelista aakkosjärjestyksessä kirjailijoiden mukaan - yhteensä 2 viite(ttä):",
             return_value[0])
-        self.assertEqual("Sen yksilöity avain on 'Smith2019'.", return_value[10])
+        self.assertEqual("Viite 'Smith2019' on tyypiltään 'article'.", return_value[8])
 
     def test_formatted_printing_error_handling(self):
         self.converter.json_data = [{'type': 'article',
@@ -86,7 +85,7 @@ class TestConverter(unittest.TestCase):
                                                 'year': '2020'}}]
         return_value = self.converter.formatted_print(False)
         self.assertEqual(
-            "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa.",
+            "Viitelistan tulostuksessa esiintyi virhe. Listaa ei ole mahdollista tulostaa.",
             return_value)
 
     def test_delete_reference(self):

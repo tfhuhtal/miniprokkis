@@ -51,6 +51,18 @@ class Converter:
         with open(self.json_file_path, "w", encoding="utf-8") as f:
             json.dump(self.json_data, f, indent=4)
 
+    def get_authors(self):
+        if (len(self.json_data) < 1):
+            return []
+
+        authors = set()
+
+        for i in range(len(self.json_data)):
+            entry = self.json_data[i]
+            authors.add(entry['fields']['author'])
+
+        return list(authors)
+
     def formatted_print(self, alphabetical):
         """Print existing reference catalogue to the console with pretty formatting."""
 
@@ -61,16 +73,17 @@ class Converter:
             return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
 
         if alphabetical is True:
-            title = f"Viitelista aakkosjärjestyksessä - yhteensä {len(self.json_data)} viite(ttä):"
+            title = f"Viitelista aakkosjärjestyksessä kirjailijoiden mukaan - yhteensä {len(self.json_data)} viite(ttä):"
         else:
             title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
         
         pretty_strings = [title]
 
-        all_keys = self.get_keys()
+        all_authors = self.get_authors()
+        final_list = ["None"] * len(self.get_keys())
 
         if alphabetical is True:
-            all_keys = sorted(all_keys, key=str.casefold)
+            all_authors = sorted(all_authors, key=str.casefold)
 
         for i in range(len(self.json_data)):
             this_entry = []
@@ -82,24 +95,27 @@ class Converter:
                 entry_key = entry['key']
                 entry_fields = entry['fields']
 
-                full_row = f"Viite {i + 1} on tyypiltään '{entry_type}'."
-                this_entry.append(full_row)
-
-                full_row = f"Sen yksilöity avain on '{entry_key}'."
+                full_row = f"Viite '{entry_key}' on tyypiltään '{entry_type}'."
                 this_entry.append(full_row)
 
                 for keys in entry_fields:
                     full_row = f"{keys : >15}: {entry_fields[keys]}"
                     this_entry.append(full_row)
                 
-                target_index = all_keys.index(entry_key)
+                target_index = all_authors.index(entry_fields['author'])
 
-                all_keys[target_index] = this_entry
+
+                while True:
+                    if final_list[target_index] == "None":
+                        final_list[target_index] = this_entry
+                        break
+                    else:
+                        target_index += 1
 
             except BaseException:
-                return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
+                return "Viitelistan tulostuksessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
         
-        for entry in all_keys:
+        for entry in final_list:
             for line in entry:
                 pretty_strings.append(line)
         
