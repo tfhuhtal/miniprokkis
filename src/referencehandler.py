@@ -6,7 +6,7 @@ from reference_types import ReferenceTypes
 
 class ReferenceHandler:
     def __init__(self, io, converter=None):
-        self.converter = converter if converter else Converter("example.json")
+        self.converter = converter if converter else Converter("savedreferences.json")
         self.io = io
         self.reference_types = ReferenceTypes("src/assets/source_types.json")
 
@@ -21,15 +21,11 @@ class ReferenceHandler:
     def input_ref_key(self, existing_keys: list):
         while True:        
             if len(self.io.inputs) == 0:
-                self.io.add_input("\nLähteen avain: ('exit' peruaksesi toiminto) ")
+                self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
             
-            if input == "exit":
-                return 0
-            
             if input == "":
-                self.io.write("\nKenttä ei voi olla tyhjä")
-                continue
+                return 0
 
             if input in existing_keys:
                 self.io.write(
