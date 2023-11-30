@@ -2,15 +2,8 @@
 
 ![GHA workflow badge](https://github.com/tfhuhtal/miniprokkis/workflows/CI/badge.svg)
 
-UUSI BackLog & Taskborad:
+BackLog & Taskborad:
 https://docs.google.com/spreadsheets/d/1zdkddheEcu4KgGOvqdeyugWC2jhsHFW93B6vufIwnQw/edit#gid=0
-
-VANHA Projekti Backlog:
-https://docs.google.com/spreadsheets/d/1duoyQsJN4G0WOU0dFs1OPUU5aQuWQdl65n7CMs9gvvU/edit#gid=0
-
-VANHA Sprintti 1 taskboard:
-https://docs.google.com/spreadsheets/d/1B0Ccr3oT1f9iR5cF_5-hlZYyvMw3nH5-nHtba_lr17U/edit#gid=0
-
 
 ## Käyttöohjeita
 
