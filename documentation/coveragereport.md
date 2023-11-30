@@ -1,0 +1,2 @@
+## Testikattavuusraportti
+![](./pics/coveragehtml.png)
