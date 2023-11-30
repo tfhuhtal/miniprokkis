@@ -6,7 +6,8 @@ from reference_types import ReferenceTypes
 
 class ReferenceHandler:
     def __init__(self, io, converter=None):
-        self.converter = converter if converter else Converter("savedreferences.json")
+        self.converter = converter if converter else Converter(
+            "savedreferences.json")
         self.io = io
         self.reference_types = ReferenceTypes("src/assets/source_types.json")
 
@@ -19,11 +20,12 @@ class ReferenceHandler:
         self.io.write("4 - Tulosta bibtex -lähdelista")
 
     def input_ref_key(self, existing_keys: list):
-        while True:        
+        while True:
             if len(self.io.inputs) == 0:
-                self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+                self.io.add_input(
+                    "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
-            
+
             if input == "":
                 return 0
 
@@ -35,9 +37,8 @@ class ReferenceHandler:
             if re.match("^[A-Za-z0-9_-]+$", input):
                 return input
             self.io.write(
-                    f"\nAvain saa sisältää vain kirjaimia a-z ja numeroita.")
+                f"\nAvain saa sisältää vain kirjaimia a-z ja numeroita.")
             continue
-
 
     def input_ref_type(self, types: list):
         self.io.write(
@@ -45,7 +46,8 @@ class ReferenceHandler:
 
         while True:
             if len(self.io.inputs) == 0:
-                self.io.add_input("\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
+                self.io.add_input(
+                    "\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
             input = self.io.read()
 
             if input == "":
@@ -134,7 +136,8 @@ class ReferenceHandler:
         key = ""
         while True:
             if len(self.io.inputs) == 0:
-                self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+                self.io.add_input(
+                    "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
             if input == "":
                 self.io.write("\nToiminto peruttu")
@@ -146,7 +149,7 @@ class ReferenceHandler:
             else:
                 self.converter.delete_reference(key)
                 self.io.write("\nLähde poistettu.")
-                return           
+                return
 
     def run(self):
         self.info()
@@ -157,15 +160,15 @@ class ReferenceHandler:
             command = self.io.read()
             if command == "0":
                 break
-            elif command == "1":
+            if command == "1":
                 self.add()
-            elif command == "2":
+            if command == "2":
                 self.list_references(False)
-            elif command == "2 -a":
+            if command == "2 -a":
                 self.list_references(True)
-            elif command == "3":
+            if command == "3":
                 self.delete()
-            elif command == "4":
+            if command == "4":
                 self.print_bibtex()
             else:
                 self.info()
@@ -175,7 +178,7 @@ class ReferenceHandler:
         for type in types:
             string += type + " "
         return string
-    
+
     def print_bibtex(self):
         data = self.converter.convert_json_to_bibtex()
         self.io.write("\nViitelista bibtex muodossa:\n")
@@ -184,6 +187,7 @@ class ReferenceHandler:
     def validate_input(self, input, field: str):
         if field == "year" and not re.match(r"^\d{4}$", input):
             return "year-kentän tulee olla 4 numeroinen"
-        if field == "pages" and not re.match(r"^\d+(--\d+)?(, \d+(--\d+)?)*$", input):
+        if field == "pages" and not re.match(
+                r"^\d+(--\d+)?(, \d+(--\d+)?)*$", input):
             return "pages-kentän tulee olla muotoa '1' tai '1--5' tai '1, 3--5, 7'"
         return 1

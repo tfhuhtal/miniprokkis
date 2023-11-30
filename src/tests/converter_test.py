@@ -63,13 +63,15 @@ class TestConverter(unittest.TestCase):
                                                 'title': 'Introduction to Samples',
                                                 'publisher': 'Sample Publishers',
                                                 'year': '2020'}}]
-                                
+
         return_value = self.converter.formatted_print(True)
         self.assertEqual(13, len(return_value))
         self.assertEqual(
             "Viitelista aakkosjärjestyksessä kirjailijoiden mukaan - yhteensä 2 viite(ttä):",
             return_value[0])
-        self.assertEqual("Viite 'Smith2019' on tyypiltään 'article'.", return_value[8])
+        self.assertEqual(
+            "Viite 'Smith2019' on tyypiltään 'article'.",
+            return_value[8])
 
     def test_formatted_printing_error_handling(self):
         self.converter.json_data = [{'type': 'article',
@@ -109,14 +111,14 @@ class TestConverter(unittest.TestCase):
                                                 'year': '2020'}}]
         self.converter.delete_reference('testi')
         self.assertEqual(self.converter.json_data, [{'type': 'article',
-                                     'key': 'Smith2019',
-                                     'fields': {'author': 'John Smith',
-                                                'title': 'A Sample Article',
-                                                'journal': 'Journal of Samples',
-                                                'year': '2019'}},
-                                    {'type': 'book',
-                                     'key': 'Doe2020',
-                                     'fields': {'author': 'Jane Doe',
-                                                'title': 'Introduction to Samples',
-                                                'publisher': 'Sample Publishers',
-                                                'year': '2020'}}])
+                                                     'key': 'Smith2019',
+                                                     'fields': {'author': 'John Smith',
+                                                                'title': 'A Sample Article',
+                                                                'journal': 'Journal of Samples',
+                                                                'year': '2019'}},
+                                                    {'type': 'book',
+                                                     'key': 'Doe2020',
+                                                     'fields': {'author': 'Jane Doe',
+                                                                'title': 'Introduction to Samples',
+                                                                'publisher': 'Sample Publishers',
+                                                                'year': '2020'}}])

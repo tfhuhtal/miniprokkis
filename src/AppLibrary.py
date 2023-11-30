@@ -2,6 +2,7 @@ import re
 from console_io import ConsoleIO
 from referencehandler import ReferenceHandler
 
+
 class AppLibrary:
     def __init__(self):
         self._io = ConsoleIO()
@@ -21,7 +22,8 @@ class AppLibrary:
             if value in split:
                 x = True
         if not x:
-            raise AssertionError(f"Output \"{value}\" is not in {str(splitted)}")
+            raise AssertionError(
+                f"Output \"{value}\" is not in {str(splitted)}")
 
     def run_application(self):
         self._app.run()

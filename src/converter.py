@@ -76,7 +76,7 @@ class Converter:
             title = f"Viitelista aakkosjärjestyksessä kirjailijoiden mukaan - yhteensä {len(self.json_data)} viite(ttä):"
         else:
             title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
-        
+
         pretty_strings = [title]
 
         all_authors = self.get_authors()
@@ -101,7 +101,7 @@ class Converter:
                 for keys in entry_fields:
                     full_row = f"{keys : >15}: {entry_fields[keys]}"
                     this_entry.append(full_row)
-                
+
                 target_index = all_authors.index(entry_fields['author'])
 
                 if alphabetical is True:
@@ -115,11 +115,11 @@ class Converter:
 
             except BaseException:
                 return "Viitelistan tulostuksessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
-        
+
         for entry in final_list:
             for line in entry:
                 pretty_strings.append(line)
-        
+
         return pretty_strings
 
     def delete_reference(self, reference_key):
@@ -141,7 +141,7 @@ class Converter:
 
     def _create_bibtex_entry(self, entry):
         bibtex_entry = f"@{entry['type']}{{{entry['key']}}},\n"
-        
+
         for field, value in entry['fields'].items():
             bibtex_entry += f"  {field} = {{{value}}},\n"
 

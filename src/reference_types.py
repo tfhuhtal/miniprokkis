@@ -1,5 +1,6 @@
 import json
 
+
 class ReferenceTypes:
     def __init__(self, source_types_path):
         self._file_path = source_types_path
@@ -16,5 +17,5 @@ class ReferenceTypes:
 
 # lataa source_types.json
     def _load_json(self):
-        with open(self._file_path, "r") as file: #pylint: disable=unspecified-encoding
+        with open(self._file_path, "r") as file:  # pylint: disable=unspecified-encoding
             return json.load(file)

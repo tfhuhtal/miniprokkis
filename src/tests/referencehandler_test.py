@@ -6,15 +6,15 @@ from reference_types import ReferenceTypes
 class ConverterStub:
     def __init__(self, json_file_path):
         self.json_data = [{
-        "type": "book",
-        "key": "John2020",
-        "fields": {
-            "author": "Johnson",
-            "title": "Johnsonisms",
-            "publisher": "J.Johnson",
-            "year": "2020"
-        }
-    }]
+            "type": "book",
+            "key": "John2020",
+            "fields": {
+                "author": "Johnson",
+                "title": "Johnsonisms",
+                "publisher": "J.Johnson",
+                "year": "2020"
+            }
+        }]
 
     def get_keys(self):
         return [entry['key'] for entry in self.json_data]
@@ -23,7 +23,8 @@ class ConverterStub:
         self.json_data.append(reference.to_json())
 
     def delete_reference(self, reference_key):
-        self.json_data = [entry for entry in self.json_data if entry['key'] != reference_key]
+        self.json_data = [
+            entry for entry in self.json_data if entry['key'] != reference_key]
 
 
 class ConsoleIOStub:
@@ -47,6 +48,7 @@ class ConsoleIOStub:
         else:
             self.inputs.append(value)
 
+
 class TestReferenceHandler(unittest.TestCase):
     def setUp(self):
         self.io_stub = ConsoleIOStub()
@@ -54,7 +56,19 @@ class TestReferenceHandler(unittest.TestCase):
         self.handler = ReferenceHandler(self.io_stub, self.converter_stub)
 
     def test_add_reference(self):
-        self.io_stub.inputs = ['ref_key', 'book', 'author', 'title', 'publisher', '2000', '', '', '', '', '', '']
+        self.io_stub.inputs = [
+            'ref_key',
+            'book',
+            'author',
+            'title',
+            'publisher',
+            '2000',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '']
         self.handler.add()
         self.assertEqual(self.io_stub.outputs[-1], "\nLähde lisätty.")
 
