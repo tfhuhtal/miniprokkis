@@ -1,2 +1,2 @@
 *** Settings ***
-Library  ../AppLibrary.py
+Library  ../applibrary.py
