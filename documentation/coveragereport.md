@@ -1,2 +1,2 @@
 ## Testikattavuusraportti
-![](./pics/coveragehtml.png)
+![](./pics/coveragehtml1.png)
