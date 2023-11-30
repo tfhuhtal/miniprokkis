@@ -17,6 +17,7 @@ robotframework = "^6.1.1"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.3.2"
+pylint = "^3.0.2"
 
 [build-system]
 requires = ["poetry-core"]

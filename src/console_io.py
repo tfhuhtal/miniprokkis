@@ -10,8 +10,7 @@ class ConsoleIO:
     def read(self):
         if len(self.inputs) > 0:
             return self.inputs.pop(0)
-        else:
-            return ""
+        return ""
 
     def add_input(self, value, val=False):
         if not val:
