@@ -2,8 +2,9 @@
 
 ![GHA workflow badge](https://github.com/tfhuhtal/miniprokkis/workflows/CI/badge.svg)
 
-BackLog & Taskborad:
-https://docs.google.com/spreadsheets/d/1zdkddheEcu4KgGOvqdeyugWC2jhsHFW93B6vufIwnQw/edit#gid=0
+- [BackLog & Taskborad](https://docs.google.com/spreadsheets/d/1zdkddheEcu4KgGOvqdeyugWC2jhsHFW93B6vufIwnQw/edit#gid=0)
+- [Testikattavuusraportti](./documentation/coveragereport.md)
+
 
 ## Käyttöohjeita
 
