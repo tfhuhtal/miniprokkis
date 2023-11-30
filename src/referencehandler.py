@@ -1,7 +1,7 @@
+import re
 from converter import Converter
 from reference import Reference
 from reference_types import ReferenceTypes
-import re
 
 
 class ReferenceHandler:
@@ -19,11 +19,14 @@ class ReferenceHandler:
         self.io.write("4 - Tulosta bibtex -lähdelista")
 
     def input_ref_key(self, existing_keys: list):
-        while True:
+        while True:        
             if len(self.io.inputs) == 0:
                 self.io.add_input("\nLähteen avain: ('exit' peruaksesi toiminto) ")
             input = self.io.read()
-
+            
+            if input == "exit":
+                return 0
+            
             if input == "":
                 self.io.write("\nKenttä ei voi olla tyhjä")
                 continue
@@ -33,10 +36,12 @@ class ReferenceHandler:
                     f"\nAvain '{input}' on jo käytössä. Käytä jotain toista avainta.")
                 continue
 
-            if input == "exit":
-                return 0
+            if re.match("^[A-Za-z0-9_-]+$", input):
+                return input
+            self.io.write(
+                    f"\nAvain saa sisältää vain kirjaimia a-z ja numeroita.")
+            continue
 
-            return input
 
     def input_ref_type(self, types: list):
         self.io.write(
