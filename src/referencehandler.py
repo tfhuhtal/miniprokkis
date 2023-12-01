@@ -65,25 +65,31 @@ class ReferenceHandler:
 
     def input_ref_fields(self, data: dict, fields: dict, field_type: str):
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
+
         for field in fields[field_type]:
             while True:
                 if len(self.io.inputs) == 0:
                     self.io.add_input(f"{field : >12}: ")
+
                 input = self.io.read()
+
                 if input == "exit":
                     return 0
-                validate_result = self.validate_input(input, field)
-                if input != "":
-                    if validate_result != 1:
-                        self.io.write(f"Virhe: ({validate_result})")
-                        continue
+                
                 if input == "" and field_type == "Pakolliset":
                     self.io.write("\nKenttä ei voi olla tyhjä")
                     continue
-                else:
+                elif input == "" and field_type == "Vapaaehtoiset":
                     break
-            if input != "":
+                
+                validate_result = self.validate_input(input, field)
+                if validate_result != 1:
+                    self.io.write(f"Virhe: ({validate_result})")
+                    continue
+
                 data["fields"][field] = input
+                break
+            
         return 1
 
     def add(self):
