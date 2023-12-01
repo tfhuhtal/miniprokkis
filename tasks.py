@@ -6,6 +6,7 @@ def start(ctx):
 
 @task
 def test(ctx):
+    ctx.run("robot src/tests", pty=True)
     ctx.run("pytest src", pty=True)
 
 @task
