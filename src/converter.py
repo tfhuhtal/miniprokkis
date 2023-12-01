@@ -13,9 +13,6 @@ class Converter:
         return json.dumps(self.json_data)
 
     def get_keys(self):
-        if len(self.json_data) < 1:
-            return []
-
         keys = []
 
         for i in range(len(self.json_data)):
@@ -52,9 +49,6 @@ class Converter:
             json.dump(self.json_data, f, indent=4)
 
     def get_authors(self):
-        if len(self.json_data) < 1:
-            return []
-
         authors = []
 
         for i in range(len(self.json_data)):
