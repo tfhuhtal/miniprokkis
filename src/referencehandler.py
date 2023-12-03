@@ -2,7 +2,7 @@ import re
 from converter import Converter
 from reference import Reference
 from reference_types import ReferenceTypes
-
+from services.print.printservice import Printservice
 
 class ReferenceHandler:
     def __init__(self, io, converter=None):
@@ -10,6 +10,7 @@ class ReferenceHandler:
             "savedreferences.json")
         self.io = io
         self.reference_types = ReferenceTypes("src/assets/source_types.json")
+        self.printter = Printservice(self.converter)
 
     #siirrä
     def info(self):
@@ -138,7 +139,7 @@ class ReferenceHandler:
 
     #siirrä
     def list_references(self, alphabetical):
-        data = self.converter.formatted_print(alphabetical)
+        data = self.printter.formatted_print(alphabetical)
 
         for entry in data:
             self.io.write(entry)
