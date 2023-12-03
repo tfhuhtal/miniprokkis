@@ -21,7 +21,7 @@ class ServiceHandler:
         self.io.write("1 - Lisää lähde")
         self.io.write("2 - Tulosta viitelista (-a aakkosjärjestyksessä)")
         self.io.write("3 - Poista lähde")
-        self.io.write("4 - Tulosta bibtex -lähdelista")
+        self.io.write("4 - Tulosta bibtex -lähdelista (-f tiedostoon)")
 
     def run(self):
         self.info()
@@ -42,5 +42,7 @@ class ServiceHandler:
                 self.deletehandler.delete()
             if command == "4":
                 self.printter.print_bibtex()
+            if command == "4 -f":
+                self.converter.bibtex_to_file()
             else:
                 self.info()
