@@ -3,6 +3,9 @@ from converter import Converter
 from reference import Reference
 from reference_types import ReferenceTypes
 from services.print.printservice import Printservice
+from services.keyhandler import Keyhandler
+from services.delete import DeleteService
+from services.add import AddService
 
 class ReferenceHandler:
     def __init__(self, io, converter=None):
@@ -11,6 +14,9 @@ class ReferenceHandler:
         self.io = io
         self.reference_types = ReferenceTypes("src/assets/source_types.json")
         self.printter = Printservice(self.converter)
+        self.keyhandler = Keyhandler(self.converter)
+        self.deletehandler = DeleteService(self.converter)
+        self.adder = AddService(self.converter)
 
     #siirrä
     def info(self):
@@ -102,7 +108,7 @@ class ReferenceHandler:
         data = {}
 
         # Kysy lähteen avainta
-        existing_keys = self.converter.get_keys()
+        existing_keys = self.keyhandler.get_keys()
 
         input = self.input_ref_key(existing_keys)
         if input == 0:
@@ -134,7 +140,7 @@ class ReferenceHandler:
             return 0
 
         new_reference = Reference(data)
-        self.converter.add_reference(new_reference)
+        self.adder.add_reference(new_reference)
         self.io.write("\nLähde lisätty.")
 
     #siirrä
@@ -157,11 +163,11 @@ class ReferenceHandler:
                 self.io.write("\nToiminto peruttu")
                 return
             key = input
-            existing_keys = self.converter.get_keys()
+            existing_keys = self.keyhandler.get_keys()
             if key not in existing_keys:
                 self.io.write("\nLähdettä ei voitu poistaa. Tarkista avain.")
             else:
-                self.converter.delete_reference(key)
+                self.deletehandler.delete_reference(key)
                 self.io.write("\nLähde poistettu.")
                 return
 

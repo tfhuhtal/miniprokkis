@@ -32,26 +32,10 @@ class Converter:
         with open(self.json_file_path, "w", encoding="utf-8") as f:
             f.write("{}")
 
-
-    def add_reference(self, reference):
-        reference_data = reference.to_json()
-        self.json_data.append(reference_data)
-        self._save_json()
-
-    def _save_json(self):
+    def save_json(self):
         """Saves the current state of JSON data back to the file."""
         with open(self.json_file_path, "w", encoding="utf-8") as f:
             json.dump(self.json_data, f, indent=4)
-
-    #siirrä omaan moduuliin
-    def delete_reference(self, reference_key):
-        for i in range(len(self.json_data)):
-            entry = self.json_data[i]
-            entry_key = entry['key']
-            if entry_key == reference_key:
-                self.json_data.pop(i)
-                self._save_json()
-                return
 
     def convert_json_to_bibtex(self):
         self.bibtex_entries = []
@@ -71,15 +55,3 @@ class Converter:
         bibtex_entry += "}\n"
 
         return bibtex_entry
-    
-    def get_keys(self):
-        if len(self.json_data) < 1:
-            return []
-
-        keys = []
-
-        for i in range(len(self.json_data)):
-            entry = self.json_data[i]
-            keys.append(entry['key'])
-
-        return keys

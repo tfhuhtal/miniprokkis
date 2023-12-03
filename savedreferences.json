@@ -70,16 +70,6 @@
         }
     },
     {
-        "type": "article",
-        "key": "kak",
-        "fields": {
-            "author": "e",
-            "title": "a",
-            "journal": "o",
-            "year": "2020"
-        }
-    },
-    {
         "type": "book",
         "key": "kalla202",
         "fields": {
