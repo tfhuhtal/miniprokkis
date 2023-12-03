@@ -1,8 +1,8 @@
 import re
-from console_io import ConsoleIO
-from reference import Reference
-from reference_types import ReferenceTypes
-from services.keyhandler import Keyhandler
+from services.console_io import ConsoleIO
+from assets.reference import Reference
+from assets.reference_types import ReferenceTypes
+from services.key import Keyhandler
 
 
 class AddService:
@@ -20,7 +20,8 @@ class AddService:
 
     def input_ref_key(self, existing_keys: list):
         while True:
-            self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+            if len(self.io.inputs) == 0:
+                self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
 
             if input == "":

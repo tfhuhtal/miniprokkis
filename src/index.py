@@ -1,10 +1,10 @@
-from referencehandler import ReferenceHandler
-from console_io import ConsoleIO
+from servicehandler import ServiceHandler
+from services.console_io import ConsoleIO
 
 
 def main():
     io = ConsoleIO()
-    app = ReferenceHandler(io)
+    app = ServiceHandler(io)
     app.run()
 
 

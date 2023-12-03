@@ -1,6 +1,10 @@
+from services.console_io import ConsoleIO
+
 class Printservice:
     def __init__(self, converter):
+        self.converter = converter
         self.json_data = converter.return_data()
+        self.io = ConsoleIO()
 
 
     def formatted_print(self, alphabetical):
@@ -85,3 +89,15 @@ class Printservice:
             keys.append(entry['key'])
 
         return keys
+    
+    def print_bibtex(self):
+        data = self.converter.convert_json_to_bibtex()
+        self.io.write("\nViitelista bibtex muodossa:\n")
+        self.io.write(data)
+
+    def list_references(self, alphabetical):
+        data = self.formatted_print(alphabetical)
+
+        for entry in data:
+            self.io.write(entry)
+

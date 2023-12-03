@@ -1,13 +1,13 @@
 import re
-from console_io import ConsoleIO
-from referencehandler import ReferenceHandler
+from services.console_io import ConsoleIO
+from servicehandler import ServiceHandler
 
 
 class AppLibrary:
     def __init__(self):
         self._io = ConsoleIO()
 
-        self._app = ReferenceHandler(self._io)
+        self._app = ServiceHandler(self._io)
 
     def input(self, value):
         self._io.add_input(value, True)

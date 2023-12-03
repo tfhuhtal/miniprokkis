@@ -1,6 +1,6 @@
 import unittest
-from referencehandler import ReferenceHandler
-from reference_types import ReferenceTypes
+from servicehandler import ReferenceHandler
+from assets.reference_types import ReferenceTypes
 
 
 class ConverterStub:

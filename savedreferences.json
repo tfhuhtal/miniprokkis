@@ -60,23 +60,13 @@
         }
     },
     {
-        "type": "inproceedings",
+        "type": "book",
         "key": "turha200",
         "fields": {
-            "author": "Alba",
-            "title": "Turha kirja",
-            "booktitle": "Turha kirjatitle ???",
-            "year": "3849"
-        }
-    },
-    {
-        "type": "book",
-        "key": "kalla202",
-        "fields": {
             "author": "a",
-            "title": "dsad",
-            "publisher": "sfdsa",
-            "year": "3030"
+            "title": "a",
+            "publisher": "a",
+            "year": "1000"
         }
     }
 ]

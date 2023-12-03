@@ -1,5 +1,5 @@
 import unittest
-from converter import Converter
+from services.converter import Converter
 
 
 class TestConverter(unittest.TestCase):
