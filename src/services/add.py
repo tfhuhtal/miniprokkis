@@ -1,13 +1,12 @@
 import re
-from services.console_io import ConsoleIO
 from assets.reference import Reference
 from assets.reference_types import ReferenceTypes
 from services.key import Keyhandler
 
 
 class AddService:
-    def __init__(self, converter):
-        self.io = ConsoleIO()
+    def __init__(self, converter, io):
+        self.io = io
         self.converter = converter
         self.json_data = converter.return_data()
         self.reference_types = ReferenceTypes("src/assets/source_types.json")

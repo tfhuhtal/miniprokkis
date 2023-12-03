@@ -1,11 +1,10 @@
-from services.console_io import ConsoleIO
 from services.key import Keyhandler
 
 class DeleteService:
-    def __init__(self, converter):
+    def __init__(self, converter, io):
         self.converter = converter
         self.json_data = converter.return_data()
-        self.io = ConsoleIO()
+        self.io = io
         self.keyhandler = Keyhandler(converter)
 
     def delete_reference(self, reference_key):

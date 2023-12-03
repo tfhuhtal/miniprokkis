@@ -1,10 +1,8 @@
-from services.console_io import ConsoleIO
-
 class Printservice:
-    def __init__(self, converter):
+    def __init__(self, converter, io):
         self.converter = converter
         self.json_data = converter.return_data()
-        self.io = ConsoleIO()
+        self.io = io
 
 
     def formatted_print(self, alphabetical):

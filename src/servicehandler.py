@@ -10,10 +10,10 @@ class ServiceHandler:
         self.converter = converter if converter else Converter(
             "savedreferences.json")
         self.io = io
-        self.printter = Printservice(self.converter)
+        self.printter = Printservice(self.converter, self.io)
         self.keyhandler = Keyhandler(self.converter)
-        self.deletehandler = DeleteService(self.converter)
-        self.adder = AddService(self.converter)
+        self.deletehandler = DeleteService(self.converter, self.io)
+        self.adder = AddService(self.converter, self.io)
 
     def info(self):
         self.io.write("Komennot: ")
