@@ -11,6 +11,7 @@ class ReferenceHandler:
         self.io = io
         self.reference_types = ReferenceTypes("src/assets/source_types.json")
 
+    #siirrä
     def info(self):
         self.io.write("Komennot: ")
         self.io.write("0 - Sulje sovellus")
@@ -19,6 +20,7 @@ class ReferenceHandler:
         self.io.write("3 - Poista lähde")
         self.io.write("4 - Tulosta bibtex -lähdelista")
 
+    #siirrä
     def input_ref_key(self, existing_keys: list):
         while True:
             if len(self.io.inputs) == 0:
@@ -40,6 +42,7 @@ class ReferenceHandler:
                 f"\nAvain saa sisältää vain kirjaimia a-z ja numeroita.")
             continue
 
+    #siirrä
     def input_ref_type(self, types: list):
         self.io.write(
             f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
@@ -63,6 +66,7 @@ class ReferenceHandler:
 
             return input
 
+    #siirrä
     def input_ref_fields(self, data: dict, fields: dict, field_type: str):
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
 
@@ -92,6 +96,7 @@ class ReferenceHandler:
             
         return 1
 
+    #siirrä
     def add(self):
         data = {}
 
@@ -131,12 +136,14 @@ class ReferenceHandler:
         self.converter.add_reference(new_reference)
         self.io.write("\nLähde lisätty.")
 
+    #siirrä
     def list_references(self, alphabetical):
         data = self.converter.formatted_print(alphabetical)
 
         for entry in data:
             self.io.write(entry)
 
+    #siirrä
     def delete(self):
         # Kysy lähteen avainta
         key = ""
@@ -157,6 +164,7 @@ class ReferenceHandler:
                 self.io.write("\nLähde poistettu.")
                 return
 
+    #siirrä
     def run(self):
         self.info()
         while True:
@@ -179,17 +187,20 @@ class ReferenceHandler:
             else:
                 self.info()
 
+    #siirrä
     def _string_of_types(self, types):
         string = ""
         for type in types:
             string += type + " "
         return string
 
+    #siirrä
     def print_bibtex(self):
         data = self.converter.convert_json_to_bibtex()
         self.io.write("\nViitelista bibtex muodossa:\n")
         self.io.write(data)
 
+    #siirrä
     def validate_input(self, input, field: str):
         if field == "year" and not re.match(r"^\d{4}$", input):
             return "year-kentän tulee olla 4 numeroinen"

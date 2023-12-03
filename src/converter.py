@@ -12,6 +12,7 @@ class Converter:
 
         return json.dumps(self.json_data)
 
+    #siirrä
     def get_keys(self):
         if len(self.json_data) < 1:
             return []
@@ -41,6 +42,7 @@ class Converter:
         with open(self.json_file_path, "w", encoding="utf-8") as f:
             f.write("{}")
 
+
     def add_reference(self, reference):
         reference_data = reference.to_json()
         self.json_data.append(reference_data)
@@ -51,6 +53,7 @@ class Converter:
         with open(self.json_file_path, "w", encoding="utf-8") as f:
             json.dump(self.json_data, f, indent=4)
 
+    #siirrä
     def get_authors(self):
         if len(self.json_data) < 1:
             return []
@@ -63,6 +66,7 @@ class Converter:
 
         return authors
 
+    #siirrä omaan moduuliin
     def formatted_print(self, alphabetical):
         """Print existing reference catalogue to the console with pretty formatting."""
 
@@ -122,6 +126,7 @@ class Converter:
 
         return pretty_strings
 
+    #siirrä omaan moduuliin
     def delete_reference(self, reference_key):
         for i in range(len(self.json_data)):
             entry = self.json_data[i]
