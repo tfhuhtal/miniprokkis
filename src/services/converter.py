@@ -55,7 +55,7 @@ class Converter:
         bibtex_entry += "}\n"
 
         return bibtex_entry
-    
+
     def bibtex_to_file(self):
-        with open("refences.bib", "w", encoding="utf-8") as f:
+        with open("references.bib", "w", encoding="utf-8") as f:
             f.write(self.convert_json_to_bibtex())

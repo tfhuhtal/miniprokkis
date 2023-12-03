@@ -24,6 +24,8 @@ class TestConverter(unittest.TestCase):
         # Cleanup code: Delete the test.json file
         if os.path.exists(self.json_file_path):
             os.remove(self.json_file_path)
+        if os.path.exists("references.bib"):
+            os.remove("references.bib")
 
     def test_save_json(self):
         self.converter.save_json()
@@ -51,3 +53,7 @@ class TestConverter(unittest.TestCase):
     def test_load_json(self):
         self.converter._load_json()
         self.assertTrue(os.path.isfile(self.json_file_path))
+
+    def test_bibtex_to_file(self):
+        self.converter.bibtex_to_file()
+        self.assertTrue(os.path.isfile("references.bib"))
