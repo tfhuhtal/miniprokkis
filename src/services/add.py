@@ -35,7 +35,7 @@ class AddService:
             if re.match("^[A-Za-z0-9_-]+$", input):
                 return input
             self.io.write(
-                f"\nAvain saa sisältää vain kirjaimia a-z ja numeroita.")
+                "\nAvain saa sisältää vain kirjaimia a-z ja numeroita.")
             continue
 
     def input_ref_type(self, types: list):
@@ -77,7 +77,7 @@ class AddService:
                 if input == "" and field_type == "Pakolliset":
                     self.io.write("\nKenttä ei voi olla tyhjä")
                     continue
-                elif input == "" and field_type == "Vapaaehtoiset":
+                if input == "" and field_type == "Vapaaehtoiset":
                     break
 
                 validate_result = self.validate_input(input, field)

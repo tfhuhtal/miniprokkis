@@ -8,7 +8,7 @@ class Keyhandler:
 
         keys = []
 
-        for i in range(len(self.json_data)):
+        for i in enumerate(self.json_data):
             entry = self.json_data[i]
             keys.append(entry['key'])
 

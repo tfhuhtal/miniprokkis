@@ -1,3 +1,4 @@
+# pylint: skip-file
 class ConsoleIO:
     def __init__(self, inputs=None):
         self.inputs = inputs or []

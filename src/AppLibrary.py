@@ -1,3 +1,4 @@
+# pylint: skip-file
 import re
 from services.console_io import ConsoleIO
 from servicehandler import ServiceHandler

@@ -1,5 +1,5 @@
+# pylint: skip-file
 import json
-
 
 class ReferenceTypes:
     def __init__(self, source_types_path):

@@ -6,6 +6,7 @@ class Converter:
     def __init__(self, json_file_path):
         self.json_file_path = json_file_path
         self.json_data = self._load_json()
+        self.bibtex_entries = []
 
     def convert(self):
         """Converts json data to string."""
@@ -38,7 +39,6 @@ class Converter:
             json.dump(self.json_data, f, indent=4)
 
     def convert_json_to_bibtex(self):
-        self.bibtex_entries = []
         for entry in self.json_data:
             bibtex_entry = self._create_bibtex_entry(entry)
             self.bibtex_entries.append(bibtex_entry)

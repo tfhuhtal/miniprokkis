@@ -9,7 +9,7 @@ class DeleteService:
         self.keyhandler = Keyhandler(converter)
 
     def delete_reference(self, reference_key):
-        for i in range(len(self.json_data)):
+        for i in enumerate(self.json_data):
             entry = self.json_data[i]
             entry_key = entry['key']
             if entry_key == reference_key:
