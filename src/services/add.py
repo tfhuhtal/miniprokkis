@@ -20,9 +20,7 @@ class AddService:
 
     def input_ref_key(self, existing_keys: list):
         while True:
-            if len(self.io.inputs) == 0:
-                self.io.add_input(
-                    "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+            self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
 
             if input == "":
@@ -61,7 +59,7 @@ class AddService:
                 continue
 
             return input
-        
+
     def input_ref_fields(self, data: dict, fields: dict, field_type: str):
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
 
@@ -74,13 +72,13 @@ class AddService:
 
                 if input == "exit":
                     return 0
-                
+
                 if input == "" and field_type == "Pakolliset":
                     self.io.write("\nKenttä ei voi olla tyhjä")
                     continue
                 elif input == "" and field_type == "Vapaaehtoiset":
                     break
-                
+
                 validate_result = self.validate_input(input, field)
                 if validate_result != 1:
                     self.io.write(f"Virhe: ({validate_result})")
@@ -88,9 +86,9 @@ class AddService:
 
                 data["fields"][field] = input
                 break
-            
+
         return 1
-    
+
     def add(self):
         data = {}
 
@@ -129,7 +127,7 @@ class AddService:
         new_reference = Reference(data)
         self.add_reference(new_reference)
         self.io.write("\nLähde lisätty.")
-    
+
     def _string_of_types(self, types):
         string = ""
         for type in types:

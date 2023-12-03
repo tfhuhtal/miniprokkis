@@ -25,10 +25,10 @@ class ConverterStub:
 #    def delete_reference(self, reference_key):
 #        self.json_data = [
 #            entry for entry in self.json_data if entry['key'] != reference_key]
-#        
 #
 #
-#class ConsoleIOStub:
+#
+# class ConsoleIOStub:
 #    def __init__(self, inputs=None):
 #        self.inputs = inputs or []
 #        self.outputs = []
@@ -50,7 +50,7 @@ class ConverterStub:
 #            self.inputs.append(value)
 #
 #
-#class TestReferenceHandler(unittest.TestCase):
+# class TestReferenceHandler(unittest.TestCase):
 #    def setUp(self):
 #        self.io_stub = ConsoleIOStub()
 #        self.converter_stub = ConverterStub('testi')

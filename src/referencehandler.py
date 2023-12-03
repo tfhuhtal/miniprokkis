@@ -1,9 +1,9 @@
-import re
 from converter import Converter
 from services.print.printservice import Printservice
 from services.keyhandler import Keyhandler
 from services.delete import DeleteService
 from services.add import AddService
+
 
 class ReferenceHandler:
     def __init__(self, io, converter=None):
@@ -15,7 +15,7 @@ class ReferenceHandler:
         self.deletehandler = DeleteService(self.converter)
         self.adder = AddService(self.converter)
 
-    #siirrä
+    # siirrä
     def info(self):
         self.io.write("Komennot: ")
         self.io.write("0 - Sulje sovellus")
@@ -24,23 +24,21 @@ class ReferenceHandler:
         self.io.write("3 - Poista lähde")
         self.io.write("4 - Tulosta bibtex -lähdelista")
 
-    #siirrä
-    
+    # siirrä
 
-    #siirrä
-    
+    # siirrä
 
-    #siirrä
-    
+    # siirrä
 
-    #siirrä
+    # siirrä
+
     def list_references(self, alphabetical):
         data = self.printter.formatted_print(alphabetical)
 
         for entry in data:
             self.io.write(entry)
 
-    #siirrä
+    # siirrä
     def delete(self):
         # Kysy lähteen avainta
         key = ""
@@ -61,7 +59,7 @@ class ReferenceHandler:
                 self.io.write("\nLähde poistettu.")
                 return
 
-    #siirrä
+    # siirrä
     def run(self):
         self.info()
         while True:
@@ -84,12 +82,12 @@ class ReferenceHandler:
             else:
                 self.info()
 
-    #siirrä
+    # siirrä
 
-    #siirrä
+    # siirrä
     def print_bibtex(self):
         data = self.converter.convert_json_to_bibtex()
         self.io.write("\nViitelista bibtex muodossa:\n")
         self.io.write(data)
 
-    #siirrä
+    # siirrä

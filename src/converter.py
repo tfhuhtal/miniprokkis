@@ -11,7 +11,7 @@ class Converter:
         """Converts json data to string."""
 
         return json.dumps(self.json_data)
-    
+
     def return_data(self):
         return self.json_data
 
