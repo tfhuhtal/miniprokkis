@@ -20,7 +20,8 @@ class AddService:
     def input_ref_key(self, existing_keys: list):
         while True:
             if len(self.io.inputs) == 0:
-                self.io.add_input("\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+                self.io.add_input(
+                    "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
 
             if input == "":
