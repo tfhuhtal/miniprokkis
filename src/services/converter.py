@@ -46,7 +46,8 @@ class Converter:
         return "\n".join(self.bibtex_entries)
 
     def _create_bibtex_entry(self, entry):
-        bibtex_entry = f"@{entry['type']}{{{entry['key']}}},\n"
+        curly_brace = '{'
+        bibtex_entry = f"@{entry['type']}{curly_brace}{entry['key']},\n"
 
         for field, value in entry['fields'].items():
             bibtex_entry += f"  {field} = {{{value}}},\n"

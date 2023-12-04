@@ -40,7 +40,7 @@ class TestConverter(unittest.TestCase):
     def test_convert_json_to_bibtex(self):
         self.assertEqual(
             self.converter.convert_json_to_bibtex(),
-            '@book{John2020},\n  author = {Johnson},\n  title = {Johnsonisms},\n  publisher = {J.Johnson},\n  year = {2020}\n}\n')
+            '@book{John2020,\n  author = {Johnson},\n  title = {Johnsonisms},\n  publisher = {J.Johnson},\n  year = {2020}\n}\n')
 
     def test_return_data(self):
         self.assertEqual(self.converter.return_data(),
