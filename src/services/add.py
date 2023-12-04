@@ -39,27 +39,27 @@ class AddService:
             continue
 
     def input_ref_type(self, types: list):
-        self.io.write(
-            f"\nMahdolliset lähdetyypit: {self._string_of_types(types)}")
+        self.io.write(f"\nMahdolliset lähdetyypit:")
+
+        for i in range(len(types)):
+            self.io.write(f"{i + 1 : >2}. {types[i]}")
 
         while True:
             if len(self.io.inputs) == 0:
+                self.io.write(
+                    "\nLähteen tyyppi: ('ENTER' peruaksesi toiminto) ")
                 self.io.add_input(
-                    "\nLähteen tyyppi: ('exit' peruaksesi toiminto) ")
+                    "komento: ")
             input = self.io.read()
 
             if input == "":
-                self.io.write("\nKenttä ei voi olla tyhjä")
-                continue
-
-            if input == "exit":
                 return 0
 
-            if input not in types:
-                self.io.write("\nTyyppi ei käytössä")
-                continue
-
-            return input
+            if input.isdigit() and 1 <= int(input) <= len(types):
+                return types[int(input) - 1]
+            else:
+                self.io.write(
+                    f"\nVirhe: valitse lähdetyyppi numerolla 1-{len(types)}")
 
     def input_ref_fields(self, data: dict, fields: dict, field_type: str):
         self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
@@ -128,12 +128,6 @@ class AddService:
         new_reference = Reference(data)
         self.add_reference(new_reference)
         self.io.write("\nLähde lisätty.")
-
-    def _string_of_types(self, types):
-        string = ""
-        for type in types:
-            string += type + " "
-        return string
 
     def validate_input(self, input, field: str):
         if field == "year" and not re.match(r"^\d{4}$", input):

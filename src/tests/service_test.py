@@ -50,7 +50,7 @@
 #    def test_add_reference(self):
 #        self.io_stub.inputs = [
 #            'ref_key',
-#            'book',
+#            '2',
 #            'author',
 #            'title',
 #            'publisher',

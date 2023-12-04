@@ -5,7 +5,7 @@ Resource  resource.robot
 Add Reference
     Input    1
     Input    sdf
-    Input    book
+    Input    2
     Input    foo
     Input    bar
     Input    Koira
@@ -28,7 +28,7 @@ Delete Reference
 Pages Field Must Be In Right Format
     Input    1
     Input    aff
-    Input    book
+    Input    2
     Input    foo
     Input    bar
     Input    Koira
@@ -43,7 +43,7 @@ Pages Field Must Be In Right Format
 Year Field Must Be In Right Format
     Input    1
     Input    fff
-    Input    book
+    Input    2
     Input    foo
     Input    bar
     Input    Koira
