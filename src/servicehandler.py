@@ -19,7 +19,7 @@ class ServiceHandler:
         self.io.write("Komennot: ")
         self.io.write("0 - Sulje sovellus")
         self.io.write("1 - Lisää lähde")
-        self.io.write("2 - Tulosta viitelista (-a aakkosjärjestyksessä)")
+        self.io.write("2 - Tulosta viitelista (-a aakkosjärjestyksessä) (-c kompakti muoto)")
         self.io.write("3 - Poista lähde")
         self.io.write("4 - Tulosta bibtex -lähdelista (-f tiedostoon)")
 
@@ -35,9 +35,13 @@ class ServiceHandler:
             if command == "1":
                 self.adder.add()
             if command == "2":
-                self.printter.list_references(False)
+                self.printter.list_references(False, False)
             if command == "2 -a":
-                self.printter.list_references(True)
+                self.printter.list_references(True, False)
+            if command == "2 -c":
+                self.printter.list_references(False, True)
+            if command == "2 -a -c" or command == "2 -c -a":
+                self.printter.list_references(True, True)
             if command == "3":
                 self.deletehandler.delete()
             if command == "4":

@@ -4,7 +4,7 @@ class Printservice:
         self.json_data = converter.return_data()
         self.io = io
 
-    def formatted_print(self, alphabetical):
+    def formatted_print(self, alphabetical, compact):
         """Print existing reference catalogue to the console with pretty formatting."""
         try:
             if len(self.json_data) < 1:
@@ -12,10 +12,7 @@ class Printservice:
         except BaseException:
             return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
 
-        if alphabetical is True:
-            title = f"Viitelista aakkosjärjestyksessä kirjailijoiden mukaan - yhteensä {len(self.json_data)} viite(ttä):"
-        else:
-            title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
+        title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
 
         pretty_strings = [title]
 
@@ -38,9 +35,22 @@ class Printservice:
                 full_row = f"Viite '{entry_key}' on tyypiltään '{entry_type}'."
                 this_entry.append(full_row)
 
+                if compact is True:
+                    compact_line = ""
+
                 for keys in entry_fields:
-                    full_row = f"{keys : >15}: {entry_fields[keys]}"
-                    this_entry.append(full_row)
+                    if compact is True:
+                        if len(entry_fields[keys]) > 20:
+                            compact_line = compact_line + f"{keys}: {entry_fields[keys][:17]}...; "
+                        else:
+                            compact_line = compact_line + f"{keys}: {entry_fields[keys]}; "
+
+                    else:
+                        full_row = f"{keys : >15}: {entry_fields[keys]}"
+                        this_entry.append(full_row)
+
+                if compact is True:
+                    this_entry.append(compact_line)
 
                 target_index = all_authors.index(entry_fields['author'])
 
@@ -63,9 +73,6 @@ class Printservice:
         return pretty_strings
 
     def get_authors(self):
-        if len(self.json_data) <1:
-            return []
-
         authors = []
 
         for i in range(len(self.json_data)):
@@ -75,9 +82,6 @@ class Printservice:
         return authors
 
     def get_keys(self):
-        if len(self.json_data) <1:
-            return []
-
         keys = []
 
         for i in range(len(self.json_data)):
@@ -91,8 +95,8 @@ class Printservice:
         self.io.write("\nViitelista bibtex muodossa:\n")
         self.io.write(data)
 
-    def list_references(self, alphabetical):
-        data = self.formatted_print(alphabetical)
+    def list_references(self, alphabetical, compact):
+        data = self.formatted_print(alphabetical, compact)
 
         for entry in data:
             self.io.write(entry)
