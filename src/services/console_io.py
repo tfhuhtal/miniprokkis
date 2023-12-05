@@ -1,7 +1,11 @@
 # pylint: skip-file
+
+from collections import deque
+
+
 class ConsoleIO:
     def __init__(self, inputs=None):
-        self.inputs = inputs or []
+        self.inputs = inputs or deque()
         self.outputs = []
 
     def write(self, value):
@@ -10,7 +14,7 @@ class ConsoleIO:
 
     def read(self):
         if len(self.inputs) > 0:
-            return self.inputs.pop(0)
+            return self.inputs.popleft()
         return ""
 
     def add_input(self, value, val=False):
