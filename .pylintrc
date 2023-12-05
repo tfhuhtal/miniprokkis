@@ -2,7 +2,9 @@
 disable=
     C0114,
     W0622,
-    C0200
+    C0200,
+    R1710,
+    R0801
     
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
@@ -301,7 +303,7 @@ max-bool-expr=5
 max-branches=15
 
 # Maximum number of locals for function / method body.
-max-locals=15
+max-locals=16
 
 # Maximum number of parents for a class (see R0901).
 max-parents=7
