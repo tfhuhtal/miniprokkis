@@ -13,6 +13,7 @@
 - tämän jälkeen voit käyttää komentoja ```poetry run invoke start``` ohjelman ajamiseen, ```poetry run invoke test``` testaamiseen, ```poetry run invoke coverage``` kattavuusraportin tulostamiseen ja ```poetry run invoke clean``` koodin muotoiluun.
 
 ## Definition of Done
+
   - All acceptance criteria are met
   - All necessary tests have been successfully completed
   - We have had multiple check the work
