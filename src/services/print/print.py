@@ -11,8 +11,12 @@ class Printservice:
                 return "Viitelistalle ei ole vielä lisätty yhtään viitettä!"
         except BaseException:
             return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
-
-        title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
+        if alphabetical:
+            title = f"Viitelista aakkosjärjestyksessä - yhteensä {len(self.json_data)} viite(ttä):"
+        elif compact:
+            title = f"Tiivis viitelista - yhteensä {len(self.json_data)} viite(ttä):"
+        else:
+            title = f"Viitelista - yhteensä {len(self.json_data)} viite(ttä):"
 
         pretty_strings = [title]
 

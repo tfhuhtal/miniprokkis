@@ -7,9 +7,9 @@ from services.add import AddService
 
 class ServiceHandler:
     def __init__(self, io, converter=None):
-        self.converter = converter if converter else Converter(
-            "savedreferences.json")
         self.io = io
+        self.converter = converter if converter else Converter(
+            "savedreferences.json", self.io)
         self.printter = Printservice(self.converter, self.io)
         self.keyhandler = Keyhandler(self.converter)
         self.deletehandler = DeleteService(self.converter, self.io)

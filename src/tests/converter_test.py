@@ -2,12 +2,13 @@
 import unittest
 import os
 from services.converter import Converter
+from services.console_io import ConsoleIO
 
 
 class TestConverter(unittest.TestCase):
     def setUp(self):
         self.json_file_path = "src/assets/test.json"
-        self.converter = Converter(self.json_file_path)
+        self.converter = Converter(self.json_file_path, ConsoleIO())
         self.converter.json_data = [
             {
                 "type": "book",

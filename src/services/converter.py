@@ -3,7 +3,8 @@ import os
 
 
 class Converter:
-    def __init__(self, json_file_path):
+    def __init__(self, json_file_path, io):
+        self.io = io
         self.json_file_path = json_file_path
         self.json_data = self._load_json()
         self.bibtex_entries = []
@@ -60,3 +61,5 @@ class Converter:
     def bibtex_to_file(self):
         with open("references.bib", "w", encoding="utf-8") as f:
             f.write(self.convert_json_to_bibtex())
+        self.io.write(f"Uusi .bib viitetiedosto luotu nimellä references.bib")
+        

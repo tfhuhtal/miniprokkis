@@ -8,7 +8,7 @@ from services.console_io import ConsoleIO
 class TestPrintservice(unittest.TestCase):
     def setUp(self):
         self.json_file_path = "src/assets/test.json"
-        self.converter = Converter(self.json_file_path)
+        self.converter = Converter(self.json_file_path, ConsoleIO())
         self.json_data = self.converter.return_data()
         self.converter.json_data = [
             {
