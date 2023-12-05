@@ -40,16 +40,6 @@
         }
     },
     {
-        "type": "article",
-        "key": "JBd",
-        "fields": {
-            "author": "matias",
-            "title": "matiaksen artikkeli",
-            "journal": "megajournal",
-            "year": "2023"
-        }
-    },
-    {
         "type": "book",
         "key": "matias",
         "fields": {
@@ -67,6 +57,16 @@
             "title": "a",
             "publisher": "a",
             "year": "1000"
+        }
+    },
+    {
+        "type": "inproceedings",
+        "key": "merkittava",
+        "fields": {
+            "author": "kirjoittaja",
+            "title": "todella hyvin erittain pitka title miten se onnistuu",
+            "booktitle": "tassa kentassa myos jotenkin karseen pitka title",
+            "year": "1394"
         }
     }
 ]
