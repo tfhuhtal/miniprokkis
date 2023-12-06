@@ -2,17 +2,23 @@
 Resource  resource.robot
 
 *** Test Cases ***
-Käyttäjä voi tulostaa lähteet bibtxt-muodossa erilliseen tiedstoon
+Käyttäjä Voi Tulostaa Lähteet Bibtxt-muodossa Erilliseen Tiedstoon
     Input    4 -f
     Run And Quit
     Output Should Contain    bib
 
-Käyttäjä voi tulostaa lähdeviitteitä tiiviissä muodossa
+Käyttäjä Voi Tulostaa Lähdeviitteitä Tiiviissä Muodossa
     Input    2 -c
     Run And Quit
     Output Should Contain    Tiivis
 
-Käyttäjä voi syöttää lähdetyypin valinnan lyhyessä muodossa
+Käyttäjä Voi Tulostaa Lähdeviitteitä Aakkosjärjestyksessä Tiiviissä Muodossa 
+    Input    2 -c -a
+    Run And Quit
+    Output Should Contain    Tiivis
+    Output Should Contain    aakkosjärjestyksessä
+
+Käyttäjä Voi Syöttää Lähdetyypin Valinnan Lyhyessä Muodossa
     Input    1
     Input    Testiavain
     Input    2
