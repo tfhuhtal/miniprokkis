@@ -115,3 +115,9 @@ class TestAddService(unittest.TestCase):
     def test_validate_input_pages_invalid(self):
         result = self.add_service.validate_input("1-10", "pages")
         self.assertNotEqual(result, 1)
+
+    def test_add_with_valid_input(self):
+        self.io.inputs = [
+            "newValidKey", "1", "Martin", "book", "journal", "2000", "", "", "1--5", "", "", ""]
+        self.add_service.add()
+        self.assertIn("\nLähde lisätty.", self.io.outputs)
