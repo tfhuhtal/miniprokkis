@@ -3,4 +3,5 @@ omit =
 	src/AppLibrary.py
 	src/console_io.py
 	src/index.py
+        src/tests/*
 source = src
