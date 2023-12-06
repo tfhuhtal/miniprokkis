@@ -32,6 +32,18 @@ class TestAddService(unittest.TestCase):
         result = self.add_service.input_ref_key(["existingKey"])
         self.assertEqual(result, 0)
 
+    def test_input_ref_type(self):
+        self.io.inputs = ["1"]
+        types = ["book", "article"]
+        result = self.add_service.input_ref_type(types)
+        self.assertEqual(result, "book")
+
+    def test_input_ref_type_cancel(self):
+        self.io.inputs = [""]
+        types = ["book", "article"]
+        result = self.add_service.input_ref_type(types)
+        self.assertEqual(result, 0)
+
     def test_validate_input_year_valid(self):
         result = self.add_service.validate_input("2020", "year")
         self.assertEqual(result, 1)
