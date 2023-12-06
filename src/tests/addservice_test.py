@@ -1,6 +1,5 @@
 import unittest
-from unittest.mock import Mock, patch
-from io import StringIO
+from unittest.mock import Mock
 from services.add import AddService
 from services.console_io import ConsoleIO
 
