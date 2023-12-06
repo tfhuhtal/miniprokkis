@@ -31,3 +31,11 @@ class TestAddService(unittest.TestCase):
         self.io.inputs = [""]
         result = self.add_service.input_ref_key(["existingKey"])
         self.assertEqual(result, 0)
+
+    def test_validate_input_year_valid(self):
+        result = self.add_service.validate_input("2020", "year")
+        self.assertEqual(result, 1)
+
+    def test_validate_input_year_invalid(self):
+        result = self.add_service.validate_input("20a0", "year")
+        self.assertNotEqual(result, 1)
