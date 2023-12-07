@@ -1,3 +1,4 @@
+# pylint: disable=R1705
 import re
 from assets.reference import Reference
 from assets.reference_types import ReferenceTypes
@@ -39,7 +40,7 @@ class AddService:
             continue
 
     def input_ref_type(self, types: list):
-        self.io.write(f"\nMahdolliset lähdetyypit:")
+        self.io.write("\nMahdolliset lähdetyypit:")
 
         for i in range(len(types)):
             self.io.write(f"{i + 1 : >2}. {types[i]}")

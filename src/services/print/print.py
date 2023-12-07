@@ -1,3 +1,4 @@
+# pylint: disable=W0718, R0914, R0912
 class Printservice:
     def __init__(self, converter, io):
         self.converter = converter

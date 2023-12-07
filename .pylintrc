@@ -5,7 +5,7 @@ disable=
     C0200,
     R1710,
     R0801,
-    W0718
+    R1714
     
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
@@ -46,7 +46,7 @@ extension-pkg-whitelist=
 fail-on=
 
 # Specify a score threshold under which the program will exit with error.
-fail-under=1
+fail-under=10
 
 # Interpret the stdin as a python script, whose filename needs to be passed as
 # the module_or_package argument.
@@ -304,7 +304,7 @@ max-bool-expr=5
 max-branches=15
 
 # Maximum number of locals for function / method body.
-max-locals=16
+max-locals=15
 
 # Maximum number of parents for a class (see R0901).
 max-parents=7
