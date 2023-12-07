@@ -4,7 +4,6 @@
 [![codecov](https://codecov.io/gh/tfhuhtal/miniprokkis/graph/badge.svg?token=M270SWOYM6)](https://codecov.io/gh/tfhuhtal/miniprokkis)
 
 - [BackLog & Taskborad](https://docs.google.com/spreadsheets/d/1zdkddheEcu4KgGOvqdeyugWC2jhsHFW93B6vufIwnQw/edit#gid=0)
-- [Testikattavuusraportti](./documentation/coveragereport.md)
 
 
 ## Käyttöohjeita
