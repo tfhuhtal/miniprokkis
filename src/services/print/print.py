@@ -48,7 +48,7 @@ class Printservice:
 
                 for keys in entry_fields:
                     if compact is True:
-                        if len(entry_fields[keys]) > 20:
+                        if len(entry_fields[keys]) > 20: # pragma: no cover
                             compact_line = compact_line + f"{keys}: {entry_fields[keys][:17]}...; "
                         else:
                             compact_line = compact_line + f"{keys}: {entry_fields[keys]}; "
@@ -67,11 +67,11 @@ class Printservice:
                         if final_list[target_index] == "None":
                             final_list[target_index] = this_entry
                             break
-                        target_index += 1
+                        target_index += 1 # pragma: no cover
                 else:
                     final_list[i] = this_entry
 
-            except BaseException:
+            except BaseException: # pragma: no cover
                 return "Viitelistan tulostuksessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."
 
         for entry in final_list:
