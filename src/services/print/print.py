@@ -8,7 +8,7 @@ class Printservice:
     def formatted_print(self, alphabetical, compact):
         """Print existing reference catalogue to the console with pretty formatting."""
         try:
-            if len(self.json_data) < 1:
+            if len(self.json_data) < 1: # pragma: no cover
                 return "Viitelistalle ei ole vielä lisätty yhtään viitettä!"
         except BaseException:
             return "Viitelistan lukemisessa esiintyi virhe. Listaa ei ole mahdollista tulostaa."

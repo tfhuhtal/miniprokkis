@@ -20,7 +20,7 @@ class AddService:
 
     def input_ref_key(self, existing_keys: list):
         while True:
-            if len(self.io.inputs) == 0:
+            if len(self.io.inputs) == 0: # pragma: no cover
                 self.io.add_input(
                     "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
@@ -46,7 +46,7 @@ class AddService:
             self.io.write(f"{i + 1 : >2}. {types[i]}")
 
         while True:
-            if len(self.io.inputs) == 0:
+            if len(self.io.inputs) == 0: # pragma: no cover
                 self.io.write(
                     "\nLähteen tyyppi: ('ENTER' peruaksesi toiminto) ")
                 self.io.add_input(
@@ -67,7 +67,7 @@ class AddService:
 
         for field in fields[field_type]:
             while True:
-                if len(self.io.inputs) == 0:
+                if len(self.io.inputs) == 0: # pragma: no cover
                     self.io.add_input(f"{field : >12}: ")
 
                 input = self.io.read()

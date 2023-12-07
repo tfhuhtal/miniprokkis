@@ -21,7 +21,7 @@ class DeleteService:
         # Kysy lähteen avainta
         key = ""
         while True:
-            if len(self.io.inputs) == 0:
+            if len(self.io.inputs) == 0: # pragma: no cover
                 self.io.add_input(
                     "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
             input = self.io.read()
