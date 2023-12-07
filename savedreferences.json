@@ -68,5 +68,15 @@
             "booktitle": "tassa kentassa myos jotenkin karseen pitka title",
             "year": "1394"
         }
+    },
+    {
+        "type": "article",
+        "key": "asd23",
+        "fields": {
+            "author": "ads",
+            "title": "dsadas",
+            "journal": "sad",
+            "year": "1232"
+        }
     }
 ]
