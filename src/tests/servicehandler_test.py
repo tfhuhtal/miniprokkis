@@ -56,14 +56,18 @@ class TestServiceHandler(unittest.TestCase):
 
     def test_info(self):
         self.handler.info()
-        self.assertEqual(self.io_stub.outputs, [
-            "Komennot: ",
-            "0 - Sulje sovellus",
-            "1 - Lisää lähde",
-            "2 - Tulosta viitelista (-a aakkosjärjestyksessä) (-c kompakti muoto)",
-            "3 - Poista lähde",
-            "4 - Tulosta bibtex -lähdelista (-f tiedostoon)"
-        ])
+        expected_outputs = [
+            "Komennot:",
+            "  0   Sulje sovellus",
+            "  1   Lisää lähde",
+            "  2   Tulosta viitelista",
+            "      -a: aakkosjärjestyksessä",
+            "      -c: kompakti muoto",
+            "  3   Poista lähde",
+            "  4   Tulosta bibtex-lähdelista",
+            "      -f: tallenna tiedostoon"
+        ]
+        self.assertEqual(self.io_stub.outputs, expected_outputs)
 
     def test_run_and_exit(self):
             self.io_stub.add_input("0", True)
