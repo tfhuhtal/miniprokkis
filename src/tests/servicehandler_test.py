@@ -72,7 +72,7 @@ class TestServiceHandler(unittest.TestCase):
     def test_run_and_exit(self):
             self.io_stub.add_input("0", True)
             self.handler.run()
-            self.assertIn("Komennot: ", self.io_stub.outputs)
+            self.assertIn("Komennot:", self.io_stub.outputs)
 
     def test_run_and_add(self):
         self.io_stub.add_input("1", True)
