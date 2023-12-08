@@ -63,7 +63,7 @@ class AddService:
                     f"\nVirhe: valitse lähdetyyppi numerolla 1-{len(types)}")
 
     def input_ref_fields(self, data: dict, fields: dict, field_type: str):
-        self.io.write(f"\n{field_type} kentät: ('exit' peruaksesi toiminto) ")
+        self.io.write(f"\n{field_type} kentät: ('Q' peruaksesi toiminto) ")
 
         for field in fields[field_type]:
             while True:
@@ -72,7 +72,7 @@ class AddService:
 
                 input = self.io.read()
 
-                if input == "exit":
+                if input == "Q":
                     return 0
 
                 if input == "" and field_type == "Pakolliset":

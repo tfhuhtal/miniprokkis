@@ -61,7 +61,7 @@ class TestAddService(unittest.TestCase):
     def test_input_ref_fields_cancel(self):
         data = {}
         fields = {"Pakolliset": ["author"]}
-        self.io.inputs = ["exit"]
+        self.io.inputs = ["Q"]
         result = self.add_service.input_ref_fields(data, fields, "Pakolliset")
         self.assertEqual(result, 0)
 
@@ -80,7 +80,7 @@ class TestAddService(unittest.TestCase):
         data["fields"] = {}
         fields = {"Pakolliset": ["author", "title", "year"], 
                 "Vapaaehtoiset": ["volume", "note"]}
-        self.io.inputs = ["Martin", "book", "", "exit"]
+        self.io.inputs = ["Martin", "book", "", "Q"]
         self.add_service.input_ref_fields(data, fields, "Pakolliset")
         self.assertIn("\nKenttä ei voi olla tyhjä", self.io.outputs)
 
@@ -97,7 +97,7 @@ class TestAddService(unittest.TestCase):
         data["fields"] = {}
         fields = {"Pakolliset": ["author", "title", "year"], 
                 "Vapaaehtoiset": ["volume", "note"]}
-        self.io.inputs = ["Martin", "book", "2000a", "exit"]
+        self.io.inputs = ["Martin", "book", "2000a", "Q"]
         self.add_service.input_ref_fields(data, fields, "Pakolliset")
         self.assertIn("Virhe: (year-kentän tulee olla 4 numeroinen)", self.io.outputs)
 

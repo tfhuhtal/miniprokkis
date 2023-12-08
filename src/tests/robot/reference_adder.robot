@@ -170,7 +170,7 @@ Käyttäjä ei pysty tallentamaan pages-kenttää jos se ei ole oikeaa muotoa
     Input    ${EMPTY}
     Input    ${EMPTY}
     Input    1, 1-5
-    Input    exit
+    Input    Q
     Run and Quit
     Output Should Contain    pages
 
@@ -182,7 +182,7 @@ Käyttäjä ei pysty tallentamaan vuosilukua tekstimuodossa
     Input    bar
     Input    Koira
     Input    kaksituhattakymmenen
-    Input    exit
+    Input    Q
     Run and Quit
     Output Should Contain    year
 
