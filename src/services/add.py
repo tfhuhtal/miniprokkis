@@ -22,10 +22,10 @@ class AddService:
         while True:
             if len(self.io.inputs) == 0: # pragma: no cover
                 self.io.add_input(
-                    "\nLähteen avain: ('ENTER' peruaksesi toiminto) ")
+                    "\nLähteen avain: ('Q' peruaksesi toiminto) ")
             input = self.io.read()
 
-            if input == "":
+            if input == "Q":
                 return 0
 
             if input in existing_keys:
@@ -48,12 +48,12 @@ class AddService:
         while True:
             if len(self.io.inputs) == 0: # pragma: no cover
                 self.io.write(
-                    "\nLähteen tyyppi: ('ENTER' peruaksesi toiminto) ")
+                    "\nLähteen tyyppi: ('Q' peruaksesi toiminto) ")
                 self.io.add_input(
                     "komento: ")
             input = self.io.read()
 
-            if input == "":
+            if input == "Q":
                 return 0
 
             if input.isdigit() and 1 <= int(input) <= len(types):

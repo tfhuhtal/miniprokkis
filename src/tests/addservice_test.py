@@ -24,7 +24,7 @@ class TestAddService(unittest.TestCase):
         self.assertEqual(result, "validKey")
 
     def test_input_ref_key_invalid(self):
-        self.io.inputs = ["invalidKey!!__", ""]
+        self.io.inputs = ["invalidKey!!__", "Q"]
         self.add_service.input_ref_key(["existingKey"])
         self.assertIn(
             "\nAvain saa sisältää vain kirjaimia a-z ja numeroita.",
@@ -36,7 +36,7 @@ class TestAddService(unittest.TestCase):
         self.assertEqual(result, "validKey")
 
     def test_input_ref_key_cancel(self):
-        self.io.inputs = [""]
+        self.io.inputs = ["Q"]
         result = self.add_service.input_ref_key(["existingKey"])
         self.assertEqual(result, 0)
 
@@ -47,13 +47,13 @@ class TestAddService(unittest.TestCase):
         self.assertEqual(result, "book")
 
     def test_input_ref_type_invalid(self):
-        self.io.inputs = ["10", ""]
+        self.io.inputs = ["10", "Q"]
         types = ["book", "article"]
         self.add_service.input_ref_type(types)
         self.assertIn("\nVirhe: valitse lähdetyyppi numerolla 1-2", self.io.outputs)
 
     def test_input_ref_type_cancel(self):
-        self.io.inputs = [""]
+        self.io.inputs = ["Q"]
         types = ["book", "article"]
         result = self.add_service.input_ref_type(types)
         self.assertEqual(result, 0)

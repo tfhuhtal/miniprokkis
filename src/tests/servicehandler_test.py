@@ -18,15 +18,20 @@ class ConverterStub:
 
     def get_keys(self):
        return [entry['key'] for entry in self.json_data]
+
     def add_reference(self, reference):
        self.json_data.append(reference.to_json())
+
     def delete_reference(self, reference_key):
       self.json_data = [
           entry for entry in self.json_data if entry['key'] != reference_key]
+
     def return_data(self):
         return self.json_data
+
     def convert_json_to_bibtex(self):
         return "Bibtex muotoisia viitteitä"
+
     def bibtex_to_file(self):
         self.io.write(f"Uusi .bib viitetiedosto luotu nimellä references.bib")
 
@@ -34,14 +39,17 @@ class ConsoleIOStub:
     def __init__(self, inputs=None):
        self.inputs = inputs or []
        self.outputs = []
+
     def write(self, value):
        self.outputs.append(value)
        print(value)
+
     def read(self):
        if len(self.inputs) > 0:
            return self.inputs.pop(0)
        else:
            return ""
+
     def add_input(self, value, val=False):
        if not val:
            self.inputs.append(input(value))
@@ -76,7 +84,7 @@ class TestServiceHandler(unittest.TestCase):
 
     def test_run_and_add(self):
         self.io_stub.add_input("1", True)
-        self.io_stub.add_input("", True)
+        self.io_stub.add_input("Q", True)
         self.io_stub.add_input("0", True)
         self.handler.run()
         self.assertIn("\nToiminto peruttu", self.io_stub.outputs)
