@@ -16,12 +16,15 @@ class ServiceHandler:
         self.adder = AddService(self.converter, self.io)
 
     def info(self):
-        self.io.write("Komennot: ")
-        self.io.write("0 - Sulje sovellus")
-        self.io.write("1 - Lisää lähde")
-        self.io.write("2 - Tulosta viitelista (-a aakkosjärjestyksessä) (-c kompakti muoto)")
-        self.io.write("3 - Poista lähde")
-        self.io.write("4 - Tulosta bibtex -lähdelista (-f tiedostoon)")
+        self.io.write("Komennot:")
+        self.io.write("  0   Sulje sovellus")
+        self.io.write("  1   Lisää lähde")
+        self.io.write("  2   Tulosta viitelista")
+        self.io.write("      -a: aakkosjärjestyksessä")
+        self.io.write("      -c: kompakti muoto")
+        self.io.write("  3   Poista lähde")
+        self.io.write("  4   Tulosta bibtex-lähdelista")
+        self.io.write("      -f: tallenna tiedostoon")
 
     def run(self):
         self.info()
