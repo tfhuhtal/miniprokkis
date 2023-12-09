@@ -32,6 +32,7 @@ Käyttäjä Voi Tulostaa Viitelistan Konsoliin Bibtext-muodossa
 
 Käyttäjä Voi Tulostaa Lähteet Bibtxt-muodossa Erilliseen Tiedstoon
     Input    4 -f
+    Input    testi
     Run And Quit
     Output Should Contain    bib
 

@@ -5,6 +5,7 @@ from services.add import AddService
 from services.delete import DeleteService
 from services.console_io import ConsoleIO
 
+
 class TestDeleteService(unittest.TestCase):
     def setUp(self):
         self.converter = Mock()
@@ -15,12 +16,13 @@ class TestDeleteService(unittest.TestCase):
 
     def test_delete_reference_validkey(self):
         reference = Mock()
-        reference.to_json.return_value = {'key': 'ValidKey', 'type': 'book', 'fields': {}}
+        reference.to_json.return_value = {
+            'key': 'ValidKey', 'type': 'book', 'fields': {}}
         self.adder.add_reference(reference)
         self.io.inputs = ["ValidKey"]
         self.deleter.delete()
         self.assertAlmostEqual(['\nLähde poistettu.'], self.io.outputs)
-    
+
     def test_delete_reference_invalidkey(self):
         self.io.inputs = ["InvalidKey", ""]
         self.deleter.delete()

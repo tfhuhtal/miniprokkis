@@ -1,4 +1,4 @@
-# pylint: skip-file 
+# pylint: skip-file
 
 class Reference:
     def __init__(self, data):

@@ -4,6 +4,7 @@ from unittest.mock import Mock
 from services.add import AddService
 from services.console_io import ConsoleIO
 
+
 class TestAddService(unittest.TestCase):
     def setUp(self):
         self.converter = Mock()
@@ -13,7 +14,8 @@ class TestAddService(unittest.TestCase):
 
     def test_add_reference(self):
         reference = Mock()
-        reference.to_json.return_value = {'key': 'testKey', 'type': 'book', 'fields': {}}
+        reference.to_json.return_value = {
+            'key': 'testKey', 'type': 'book', 'fields': {}}
         self.add_service.add_reference(reference)
         self.assertEqual(len(self.converter.return_data()), 1)
         self.assertEqual(self.converter.return_data()[0]['key'], 'testKey')
@@ -28,7 +30,7 @@ class TestAddService(unittest.TestCase):
         self.add_service.input_ref_key(["existingKey"])
         self.assertIn(
             "\nAvain saa sisältää vain kirjaimia a-z ja numeroita.",
-                self.io.outputs)
+            self.io.outputs)
 
     def test_input_ref_key_duplicate(self):
         self.io.inputs = ["existingKey", "validKey"]
@@ -50,7 +52,9 @@ class TestAddService(unittest.TestCase):
         self.io.inputs = ["10", "Q"]
         types = ["book", "article"]
         self.add_service.input_ref_type(types)
-        self.assertIn("\nVirhe: valitse lähdetyyppi numerolla 1-2", self.io.outputs)
+        self.assertIn(
+            "\nVirhe: valitse lähdetyyppi numerolla 1-2",
+            self.io.outputs)
 
     def test_input_ref_type_cancel(self):
         self.io.inputs = ["Q"]
@@ -68,18 +72,21 @@ class TestAddService(unittest.TestCase):
     def test_input_ref_fields_valid_pakolliset(self):
         data = {}
         data["fields"] = {}
-        fields = {"Pakolliset": ["author", "title", "year"], 
-                "Vapaaehtoiset": ["volume", "note"]}
+        fields = {"Pakolliset": ["author", "title", "year"],
+                  "Vapaaehtoiset": ["volume", "note"]}
         self.io.inputs = ["Martin", "book", "2000"]
         result = self.add_service.input_ref_fields(data, fields, "Pakolliset")
         self.assertEqual(result, 1)
-        self.assertEqual(data, {'fields': {'author': 'Martin', 'title': 'book', 'year': '2000'}})
+        self.assertEqual(
+            data, {
+                'fields': {
+                    'author': 'Martin', 'title': 'book', 'year': '2000'}})
 
     def test_input_ref_fields_empty_pakolliset(self):
         data = {}
         data["fields"] = {}
-        fields = {"Pakolliset": ["author", "title", "year"], 
-                "Vapaaehtoiset": ["volume", "note"]}
+        fields = {"Pakolliset": ["author", "title", "year"],
+                  "Vapaaehtoiset": ["volume", "note"]}
         self.io.inputs = ["Martin", "book", "", "Q"]
         self.add_service.input_ref_fields(data, fields, "Pakolliset")
         self.assertIn("\nKenttä ei voi olla tyhjä", self.io.outputs)
@@ -89,17 +96,20 @@ class TestAddService(unittest.TestCase):
         data["fields"] = {}
         fields = {"Vapaaehtoiset": ["volume", "note"]}
         self.io.inputs = ["", ""]
-        result = self.add_service.input_ref_fields(data, fields, "Vapaaehtoiset")
+        result = self.add_service.input_ref_fields(
+            data, fields, "Vapaaehtoiset")
         self.assertEqual(data, {'fields': {}})
 
     def test_input_ref_fields_invalid(self):
         data = {}
         data["fields"] = {}
-        fields = {"Pakolliset": ["author", "title", "year"], 
-                "Vapaaehtoiset": ["volume", "note"]}
+        fields = {"Pakolliset": ["author", "title", "year"],
+                  "Vapaaehtoiset": ["volume", "note"]}
         self.io.inputs = ["Martin", "book", "2000a", "Q"]
         self.add_service.input_ref_fields(data, fields, "Pakolliset")
-        self.assertIn("Virhe: (year-kentän tulee olla 4 numeroinen)", self.io.outputs)
+        self.assertIn(
+            "Virhe: (year-kentän tulee olla 4 numeroinen)",
+            self.io.outputs)
 
     def test_validate_input_year_valid(self):
         result = self.add_service.validate_input("2020", "year")

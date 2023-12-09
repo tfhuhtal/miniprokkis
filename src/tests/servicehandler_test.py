@@ -2,29 +2,30 @@
 import unittest
 from servicehandler import ServiceHandler
 
+
 class ConverterStub:
     def __init__(self, json_file_path, io):
-       self.json_data = [{
-           "type": "book",
-           "key": "John2020",
-           "fields": {
-               "author": "Johnson",
-               "title": "Johnsonisms",
-               "publisher": "J.Johnson",
-               "year": "2020"
-           }
-         }]
-       self.io = io
+        self.json_data = [{
+            "type": "book",
+            "key": "John2020",
+            "fields": {
+                "author": "Johnson",
+                "title": "Johnsonisms",
+                "publisher": "J.Johnson",
+                "year": "2020"
+            }
+        }]
+        self.io = io
 
     def get_keys(self):
-       return [entry['key'] for entry in self.json_data]
+        return [entry['key'] for entry in self.json_data]
 
     def add_reference(self, reference):
-       self.json_data.append(reference.to_json())
+        self.json_data.append(reference.to_json())
 
     def delete_reference(self, reference_key):
-      self.json_data = [
-          entry for entry in self.json_data if entry['key'] != reference_key]
+        self.json_data = [
+            entry for entry in self.json_data if entry['key'] != reference_key]
 
     def return_data(self):
         return self.json_data
@@ -35,26 +36,28 @@ class ConverterStub:
     def bibtex_to_file(self):
         self.io.write(f"Uusi .bib viitetiedosto luotu nimellä references.bib")
 
+
 class ConsoleIOStub:
     def __init__(self, inputs=None):
-       self.inputs = inputs or []
-       self.outputs = []
+        self.inputs = inputs or []
+        self.outputs = []
 
     def write(self, value):
-       self.outputs.append(value)
-       print(value)
+        self.outputs.append(value)
+        print(value)
 
     def read(self):
-       if len(self.inputs) > 0:
-           return self.inputs.pop(0)
-       else:
-           return ""
+        if len(self.inputs) > 0:
+            return self.inputs.pop(0)
+        else:
+            return ""
 
     def add_input(self, value, val=False):
-       if not val:
-           self.inputs.append(input(value))
-       else:
-           self.inputs.append(value)
+        if not val:
+            self.inputs.append(input(value))
+        else:
+            self.inputs.append(value)
+
 
 class TestServiceHandler(unittest.TestCase):
     def setUp(self):
@@ -78,9 +81,9 @@ class TestServiceHandler(unittest.TestCase):
         self.assertEqual(self.io_stub.outputs, expected_outputs)
 
     def test_run_and_exit(self):
-            self.io_stub.add_input("0", True)
-            self.handler.run()
-            self.assertIn("Komennot:", self.io_stub.outputs)
+        self.io_stub.add_input("0", True)
+        self.handler.run()
+        self.assertIn("Komennot:", self.io_stub.outputs)
 
     def test_run_and_add(self):
         self.io_stub.add_input("1", True)
@@ -93,30 +96,32 @@ class TestServiceHandler(unittest.TestCase):
         self.io_stub.add_input("2", True)
         self.io_stub.add_input("0", True)
         self.handler.run()
-        self.assertIn("Viitelista - yhteensä 1 viite(ttä):", self.io_stub.outputs)
+        self.assertIn(
+            "Viitelista - yhteensä 1 viite(ttä):",
+            self.io_stub.outputs)
 
     def test_run_and_print_a(self):
         self.io_stub.add_input("2 -a", True)
         self.io_stub.add_input("0", True)
         self.handler.run()
         self.assertIn("Viitelista aakkosjärjestyksessä - yhteensä 1 viite(ttä):",
-                       self.io_stub.outputs)
-        
+                      self.io_stub.outputs)
+
     def test_run_and_print_c(self):
         self.io_stub.add_input("2 -c", True)
         self.io_stub.add_input("0", True)
         self.handler.run()
         self.assertIn("Tiivis viitelista - yhteensä 1 viite(ttä):",
-                       self.io_stub.outputs)
-        
+                      self.io_stub.outputs)
+
     def test_run_and_print_a_c(self):
         self.io_stub.add_input("2 -a -c", True)
         self.io_stub.add_input("0", True)
         self.handler.run()
         self.assertIn(
             "Tiivis viitelista aakkosjärjestyksessä - yhteensä 1 viite(ttä):",
-                       self.io_stub.outputs)
-        
+            self.io_stub.outputs)
+
     def test_run_and_delete(self):
         self.io_stub.add_input("3", True)
         self.io_stub.add_input("Martin2000", True)
@@ -124,8 +129,8 @@ class TestServiceHandler(unittest.TestCase):
         self.io_stub.add_input("0", True)
         self.handler.run()
         self.assertIn("\nLähdettä ei voitu poistaa. Tarkista avain.",
-                       self.io_stub.outputs)
-        
+                      self.io_stub.outputs)
+
     def test_run_and_print_bibtex(self):
         self.io_stub.add_input("4", True)
         self.io_stub.add_input("0", True)
@@ -137,4 +142,4 @@ class TestServiceHandler(unittest.TestCase):
         self.io_stub.add_input("0", True)
         self.handler.run()
         self.assertIn("Uusi .bib viitetiedosto luotu nimellä references.bib",
-                       self.io_stub.outputs)
+                      self.io_stub.outputs)

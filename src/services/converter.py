@@ -59,7 +59,9 @@ class Converter:
         return bibtex_entry
 
     def bibtex_to_file(self):
-        with open("references.bib", "w", encoding="utf-8") as f:
+        if len(self.io.inputs) == 0:
+            self.io.add_input("Anna tiedoston nimi: ")
+        file_name = self.io.read() + ".bib"
+        with open(file_name, "w", encoding="utf-8") as f:
             f.write(self.convert_json_to_bibtex())
-        self.io.write("Uusi .bib viitetiedosto luotu nimellä references.bib")
-        
+        self.io.write("Uusi .bib viitetiedosto luotu nimellä " + file_name)

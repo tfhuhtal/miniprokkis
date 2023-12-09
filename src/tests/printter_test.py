@@ -5,6 +5,7 @@ from services.print.print import Printservice
 from services.converter import Converter
 from services.console_io import ConsoleIO
 
+
 class TestPrintservice(unittest.TestCase):
     def setUp(self):
         self.json_file_path = "src/assets/test.json"
@@ -56,9 +57,9 @@ class TestPrintservice(unittest.TestCase):
             test_value = True
         else:
             test_value = False
-        
+
         self.assertEqual(test_value, True)
-    
+
     def test_compact_print(self):
         test_value = self.printter.formatted_print(False, True)
 
@@ -73,5 +74,5 @@ class TestPrintservice(unittest.TestCase):
             test_value = True
         else:
             test_value = False
-         
+
         self.assertEqual(test_value, True)

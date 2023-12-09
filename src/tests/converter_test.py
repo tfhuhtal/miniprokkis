@@ -1,6 +1,7 @@
 # pylint: skip-file
 import unittest
 import os
+from unittest.mock import patch
 from services.converter import Converter
 from services.console_io import ConsoleIO
 
@@ -9,6 +10,7 @@ class TestConverter(unittest.TestCase):
     def setUp(self):
         self.json_file_path = "src/assets/test.json"
         self.converter = Converter(self.json_file_path, ConsoleIO())
+        self.file_name = "testi"
         self.converter.json_data = [
             {
                 "type": "book",
@@ -26,8 +28,8 @@ class TestConverter(unittest.TestCase):
         # Cleanup code: Delete the test.json file
         if os.path.exists(self.json_file_path):
             os.remove(self.json_file_path)
-        if os.path.exists("references.bib"):
-            os.remove("references.bib")
+        if os.path.exists(self.file_name):
+            os.remove(self.file_name)
 
     def test_save_json(self):
         self.converter.save_json()
@@ -56,6 +58,7 @@ class TestConverter(unittest.TestCase):
         self.converter._load_json()
         self.assertTrue(os.path.isfile(self.json_file_path))
 
-    def test_bibtex_to_file(self):
+    @patch('builtins.input', return_value='testi')
+    def test_bibtex_to_file(self, mock_input):
         self.converter.bibtex_to_file()
-        self.assertTrue(os.path.isfile("references.bib"))
+        self.assertTrue(os.path.isfile('testi.bib'))
