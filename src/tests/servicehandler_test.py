@@ -76,7 +76,9 @@ class TestServiceHandler(unittest.TestCase):
             "      -c: kompakti muoto",
             "  3   Poista lähde",
             "  4   Tulosta bibtex-lähdelista",
-            "      -f: tallenna tiedostoon"
+            "      -f: tallenna tiedostoon",
+            "  5   Hae lähteistä",
+            "      -c: kompakti muoto"
         ]
         self.assertEqual(self.io_stub.outputs, expected_outputs)
 

@@ -25,6 +25,8 @@ class ServiceHandler:
         self.io.write("  3   Poista lähde")
         self.io.write("  4   Tulosta bibtex-lähdelista")
         self.io.write("      -f: tallenna tiedostoon")
+        self.io.write("  5   Hae lähteistä")
+        self.io.write("      -c: kompakti muoto")
 
     def run(self):
         self.info()
@@ -51,5 +53,9 @@ class ServiceHandler:
                 self.printter.print_bibtex()
             if command == "4 -f":
                 self.converter.bibtex_to_file()
+            if command == "5":
+                self.printter.search(False)
+            if command == "5 -c":
+                self.printter.search(True)
             else:
                 self.info()
