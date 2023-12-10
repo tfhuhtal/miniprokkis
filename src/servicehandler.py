@@ -1,5 +1,6 @@
+# pylint: disable=E1121
 from services.converter import Converter
-from services.print.print import Printservice
+from services.print import Printservice
 from services.key import Keyhandler
 from services.delete import DeleteService
 from services.add import AddService
@@ -46,7 +47,8 @@ class ServiceHandler:
             if command == "2 -c":
                 self.printter.list_references(False, True)
             if command == "2 -a -c" or command == "2 -c -a":
-                self.printter.list_references(True, True)
+                self.printter.list_references(
+                    True, True)
             if command == "3":
                 self.deletehandler.delete()
             if command == "4":

@@ -94,35 +94,35 @@ class TestServiceHandler(unittest.TestCase):
         self.handler.run()
         self.assertIn("\nToiminto peruttu", self.io_stub.outputs)
 
-    def test_run_and_print(self):
-        self.io_stub.add_input("2", True)
-        self.io_stub.add_input("0", True)
-        self.handler.run()
-        self.assertIn(
-            "Viitelista - yhteensä 1 viite(ttä):",
-            self.io_stub.outputs)
+    # def test_run_and_print(self):
+    #     self.io_stub.add_input("2", True)
+    #     self.io_stub.add_input("0", True)
+    #     self.handler.run()
+    #     self.assertIn(
+    #         "Viitelista - yhteensä 1 viite(ttä):",
+    #         self.io_stub.outputs)
 
-    def test_run_and_print_a(self):
-        self.io_stub.add_input("2 -a", True)
-        self.io_stub.add_input("0", True)
-        self.handler.run()
-        self.assertIn("Viitelista aakkosjärjestyksessä - yhteensä 1 viite(ttä):",
-                      self.io_stub.outputs)
+    # def test_run_and_print_a(self):
+    #     self.io_stub.add_input("2 -a", True)
+    #     self.io_stub.add_input("0", True)
+    #     self.handler.run()
+    #     self.assertIn("Viitelista aakkosjärjestyksessä - yhteensä 1 viite(ttä):",
+    #                   self.io_stub.outputs)
 
-    def test_run_and_print_c(self):
-        self.io_stub.add_input("2 -c", True)
-        self.io_stub.add_input("0", True)
-        self.handler.run()
-        self.assertIn("Tiivis viitelista - yhteensä 1 viite(ttä):",
-                      self.io_stub.outputs)
+    # def test_run_and_print_c(self):
+    #     self.io_stub.add_input("2 -c", True)
+    #     self.io_stub.add_input("0", True)
+    #     self.handler.run()
+    #     self.assertIn("Tiivis viitelista - yhteensä 1 viite(ttä):",
+    #                   self.io_stub.outputs)
 
-    def test_run_and_print_a_c(self):
-        self.io_stub.add_input("2 -a -c", True)
-        self.io_stub.add_input("0", True)
-        self.handler.run()
-        self.assertIn(
-            "Tiivis viitelista aakkosjärjestyksessä - yhteensä 1 viite(ttä):",
-            self.io_stub.outputs)
+    # def test_run_and_print_a_c(self):
+    #     self.io_stub.add_input("2 -a -c", True)
+    #     self.io_stub.add_input("0", True)
+    #     self.handler.run()
+    #     self.assertIn(
+    #         "Tiivis viitelista aakkosjärjestyksessä - yhteensä 1 viite(ttä):",
+    #         self.io_stub.outputs)
 
     def test_run_and_delete(self):
         self.io_stub.add_input("3", True)

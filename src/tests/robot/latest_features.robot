@@ -11,12 +11,12 @@ Käyttäjä Voi Tulostaa Lähteet Bibtxt-muodossa Erilliseen Tiedstoon
 Käyttäjä Voi Tulostaa Lähdeviitteitä Tiiviissä Muodossa
     Input    2 -c
     Run And Quit
-    Output Should Contain    Tiivis
+    Output Should Contain    Tiiviissä
 
 Käyttäjä Voi Tulostaa Lähdeviitteitä Aakkosjärjestyksessä Tiiviissä Muodossa 
     Input    2 -c -a
     Run And Quit
-    Output Should Contain    Tiivis
+    Output Should Contain    Tiiviissä
     Output Should Contain    aakkosjärjestyksessä
 
 Käyttäjä Voi Syöttää Lähdetyypin Valinnan Lyhyessä Muodossa

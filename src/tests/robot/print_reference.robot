@@ -16,12 +16,12 @@ Käyttäjä Voi Tulostaa Lähdeviitteitä Aakkosjärjestyksessä
 Käyttäjä Voi Tulostaa Lähdeviitteitä Tiiviissä Muodossa
     Input    2 -c
     Run And Quit
-    Output Should Contain    Tiivis
+    Output Should Contain    Tiiviissä
 
 Käyttäjä Voi Tulostaa Lähdeviitteitä Aakkosjärjestyksessä Tiiviissä Muodossa 
     Input    2 -c -a
     Run And Quit
-    Output Should Contain    Tiivis
+    Output Should Contain    Tiiviissä
     Output Should Contain    aakkosjärjestyksessä
 
 Käyttäjä Voi Tulostaa Viitelistan Konsoliin Bibtext-muodossa
