@@ -28,6 +28,8 @@ class ServiceHandler:
         self.io.write("      -f: tallenna tiedostoon")
         self.io.write("  5   Hae lähteistä")
         self.io.write("      -c: kompakti muoto")
+        self.io.write("  6   Hae lähteistä avaimella")
+        self.io.write("      -c: kompakti muoto")
 
     def run(self):
         self.info()
@@ -59,5 +61,9 @@ class ServiceHandler:
                 self.printter.search(False)
             if command == "5 -c":
                 self.printter.search(True)
+            if command == "6":
+                self.printter.search_by_key(False)
+            if command == "6 -c":
+                self.printter.search_by_key(True)
             else:
                 self.info()

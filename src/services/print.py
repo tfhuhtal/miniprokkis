@@ -73,6 +73,22 @@ class Printservice:
                 results.append(self.json_data[i])
         self.list_handler(compact, results)
 
+    def search_by_key(self, compact):
+        if len(self.io.inputs) == 0:    # pragma: no cover
+            self.io.add_input(
+                "\nAvain: ")
+        word = self.io.read()
+
+        results = []
+
+        for i in range(len(self.json_data)):
+            if word.lower() in str(self.json_data[i]["key"]).lower():
+                results.append(self.json_data[i])
+        if len(results) == 0:
+            self.io.write("\nAvaimella ei löytynyt viitettä.")
+            return
+        self.list_handler(compact, results)
+
     def sort_by_author(self, compact):
         authors = sorted(self.get_authors(), key=lambda x: x[1])
         alphabeticallist = []
