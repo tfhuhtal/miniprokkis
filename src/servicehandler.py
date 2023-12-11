@@ -4,6 +4,7 @@ from services.print import Printservice
 from services.key import Keyhandler
 from services.delete import DeleteService
 from services.add import AddService
+from services.recommend import Recommendation
 
 
 class ServiceHandler:
@@ -15,6 +16,7 @@ class ServiceHandler:
         self.keyhandler = Keyhandler(self.converter)
         self.deletehandler = DeleteService(self.converter, self.io)
         self.adder = AddService(self.converter, self.io)
+        self.recommendation = Recommendation(self.converter, self.io, self.keyhandler)
 
     def info(self):
         self.io.write("Komennot:")
@@ -30,6 +32,7 @@ class ServiceHandler:
         self.io.write("      -c: kompakti muoto")
         self.io.write("  6   Hae lähteistä avaimella")
         self.io.write("      -c: kompakti muoto")
+        self.io.write("  7   Anna kirjasuositus lähteen perusteella")
 
     def run(self):
         self.info()
@@ -66,4 +69,5 @@ class ServiceHandler:
             if command == "6 -c":
                 self.printter.search_by_key(True)
             if command == "7":
-                self.printter.get_rec()
+                self.recommendation.get_rec()
+  
