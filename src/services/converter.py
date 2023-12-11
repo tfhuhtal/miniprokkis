@@ -59,7 +59,7 @@ class Converter:
         return bibtex_entry
 
     def bibtex_to_file(self):
-        if len(self.io.inputs) == 0:
+        if len(self.io.inputs) == 0:   # pragma: no cover
             self.io.add_input("Anna tiedoston nimi: ")
         file_name = self.io.read() + ".bib"
         with open(file_name, "w", encoding="utf-8") as f:

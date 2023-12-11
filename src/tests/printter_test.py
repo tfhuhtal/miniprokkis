@@ -1,6 +1,7 @@
 # pylint: skip-file
 import unittest
 import os
+from unittest.mock import patch
 from services.print import Printservice
 from services.converter import Converter
 from services.console_io import ConsoleIO
@@ -62,3 +63,8 @@ class TestPrintservice(unittest.TestCase):
         test_value = self.printter.list_references(True, True)
 
         self.assertEqual(8, len(self.io.outputs))
+
+    @patch('builtins.input', return_value='John')
+    def test_search(self, mock_input):
+        test_value = self.printter.search(False)
+        self.assertIn("John", self.io.outputs[0])
