@@ -21,23 +21,24 @@ class Printservice:
         entry_type = entry['type']
         entry_key = entry['key']
         entry_fields = entry['fields']
-        full_row = f"Viite '{entry_key}' on tyypiltään '{entry_type}'."
-        self.io.write(full_row)
 
-        for keys in entry_fields:
+        required_fields = ['author', 'title', 'year']
+
+        for keys in required_fields:
             if len(entry_fields[keys]) > 20:  # pragma: no cover
                 compact_line = compact_line + \
-                    f"{keys}: {entry_fields[keys][:17]}...; "
+                    f"{entry_fields[keys][:17]}..;"
             else:
                 compact_line = compact_line + \
-                    f"{keys}: {entry_fields[keys]}; "
-        self.io.write(compact_line)
+                    f"{entry_fields[keys] : <20}"
+        self.io.write(f"{entry_key : <20}{entry_type : <16}{compact_line}")
         self.io.write("")
 
     def list_handler(self, compact, printdata):
         printlist = printdata
         if compact is True:
             self.io.write("Tiiviissä muodossa:")
+            self.io.write(f"{'key' : <20}{'type' : <16}{'author' : <20}{'title' : <20}{'year'}")
         for i in range(len(printlist)):
             entry = printlist[i]
             if compact is True:

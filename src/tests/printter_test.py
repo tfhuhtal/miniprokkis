@@ -57,12 +57,12 @@ class TestPrintservice(unittest.TestCase):
     def test_compact_print(self):
         test_value = self.printter.list_references(False, True)
 
-        self.assertEqual(8, len(self.io.outputs))
+        self.assertEqual(7, len(self.io.outputs))
 
     def test_compact_alphabetical_print(self):
         test_value = self.printter.list_references(True, True)
 
-        self.assertEqual(8, len(self.io.outputs))
+        self.assertEqual(7, len(self.io.outputs))
 
     @patch('builtins.input', return_value='John')
     def test_search(self, mock_input):
