@@ -26,12 +26,11 @@ class Recommendation:
                     if input.lower() in str(self.json_data[i]["key"]).lower():
                         book = self.json_data[i]
                 prompt_text = f"Give me a book recommendation based on the following book: {book['fields']['title']}, {book['fields']['author']}. Just the books name is enough."
-                self.io.write(prompt_text)
                 response = self.send_prompt(prompt_text)
                 print("Kirjasuositus:", f"'{response}'")
 
     def send_prompt(self, prompt):
-        with open('src/services/api_key.txt', 'r') as file:
+        with open('src/assets/api_key.txt', 'r') as file:
             api_key = file.read().strip()
             client = OpenAI(api_key=api_key)
             response = client.chat.completions.create(model="gpt-3.5-turbo",  # Specify the model you want to use
