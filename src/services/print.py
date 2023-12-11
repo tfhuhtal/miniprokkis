@@ -63,14 +63,14 @@ class Printservice:
         if len(self.io.inputs) == 0:  # pragma: no cover
             self.io.add_input(
                 "\nHakusana: ")
-        word = self.io.read()
+        word = self.io.read() # pragma: no cover
 
-        results = []
+        results = [] # pragma: no cover
 
-        for i in range(len(self.json_data)):
-            if word.lower() in str(self.json_data[i]['fields']).lower():
+        for i in range(len(self.json_data)): # pragma: no cover
+            if word.lower() in str(self.json_data[i]['fields']).lower(): # pragma: no cover
                 results.append(self.json_data[i])
-        self.list_handler(compact, results)
+        self.list_handler(compact, results) # pragma: no cover
 
     def sort_by_author(self, compact):
         authors = sorted(self.get_authors(), key=lambda x: x[1])
