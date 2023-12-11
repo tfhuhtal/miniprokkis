@@ -65,5 +65,5 @@ class ServiceHandler:
                 self.printter.search_by_key(False)
             if command == "6 -c":
                 self.printter.search_by_key(True)
-            else:
-                self.info()
+            if command == "7":
+                self.printter.get_rec()

@@ -1,8 +1,12 @@
+import random
+from services.key import Keyhandler
+
 class Printservice:
     def __init__(self, converter, io):
         self.converter = converter
         self.json_data = converter.return_data()
         self.io = io
+        self.keyhandler = Keyhandler(converter)
 
     def print(self, entry):
         entry_type = entry['type']
@@ -120,3 +124,10 @@ class Printservice:
             authors.append(key_author)
 
         return authors
+
+    def get_rec(self): # pragma: no cover
+        keys = self.keyhandler.get_keys() # pragma: no cover
+        index = random.randint(0, (len(keys)-1)) # pragma: no cover
+        key = keys.pop(index) # pragma: no cover
+        self.io.inputs = [key] # pragma: no cover
+        self.search_by_key(False) # pragma: no cover
