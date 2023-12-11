@@ -130,4 +130,4 @@ class Printservice:
         index = random.randint(0, (len(keys)-1)) # pragma: no cover
         key = keys.pop(index) # pragma: no cover
         self.io.inputs = [key] # pragma: no cover
-        self.search_by_key(False) # pragma: no cover
+        self.search_by_key(False)
