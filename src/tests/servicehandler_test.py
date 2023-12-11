@@ -147,3 +147,19 @@ class TestServiceHandler(unittest.TestCase):
         self.handler.run()
         self.assertIn("Uusi .bib viitetiedosto luotu nimellä references.bib",
                       self.io_stub.outputs)
+
+    def test_run_and_search(self):
+        self.io_stub.add_input("5", True)
+        self.io_stub.add_input("Johnson", True)
+        self.io_stub.add_input("0", True)
+        self.handler.run()
+        self.assertIn(
+            "Viite 'John2020' on tyypiltään 'book'.",
+            self.io_stub.outputs)
+
+    def test_run_and_search_c(self):
+        self.io_stub.add_input("5 -c", True)
+        self.io_stub.add_input("Johnson", True)
+        self.io_stub.add_input("0", True)
+        self.handler.run()
+        self.assertIn("Tiiviissä muodossa:", self.io_stub.outputs)
