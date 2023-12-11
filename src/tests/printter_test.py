@@ -68,3 +68,13 @@ class TestPrintservice(unittest.TestCase):
     def test_search(self, mock_input):
         test_value = self.printter.search(False)
         self.assertIn("John", self.io.outputs[0])
+
+    @patch('builtins.input', return_value='John')
+    def test_search_by_existing_key(self, mock_input):
+        test_value = self.printter.search_by_key(False)
+        self.assertIn("John", self.io.outputs[0])
+
+    @patch('builtins.input', return_value='a_nonexistent_key')
+    def test_search_by_nonexistent_key(self, mock_input):
+        test_value = self.printter.search_by_key(False)
+        self.assertEqual(test_value, 0)

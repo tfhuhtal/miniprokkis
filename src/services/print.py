@@ -95,7 +95,7 @@ class Printservice:
                 results.append(self.json_data[i])
         if len(results) == 0:
             self.io.write("\nAvaimella ei löytynyt viitettä.")
-            return
+            return 0
         self.list_handler(compact, results)
 
     def sort_by_author(self, compact):
