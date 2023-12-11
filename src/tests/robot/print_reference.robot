@@ -36,12 +36,65 @@ Käyttäjä Voi Tulostaa Lähteet Bibtxt-muodossa Erilliseen Tiedstoon
     Run And Quit
     Output Should Contain    bib
 
+Käyttäjä Voi Hakea Lähdeviitteitä Hakusanalla
+    Lisää Testi Lähdeviite
+    Input    5
+    Input    Testi
+    Poista Testi Lähdeviite
+    Run And Quit
+    Output Should Contain    TestiTitle
+
+Käyttäjä Voi Hakea Lähdeviitteitä Hakusanalla Kompaktina Tulosteena
+    Lisää Testi Lähdeviite
+    Input    5 -c
+    Input    Testi
+    Poista Testi Lähdeviite
+    Run And Quit
+    Output Should Contain    TestiTitle
+
+Käyttäjä Voi Hakea Lähdeviitteitä Avaimella
+    Lisää Testi Lähdeviite
+    Input    6
+    Input    Testiavain
+    Poista Testi Lähdeviite
+    Run And Quit
+    Output Should Contain    TestiTitle
+
+Käyttäjä Voi Hakea Lähdeviitteitä Avaimella Kompaktina Tulosteena
+    Lisää Testi Lähdeviite
+    Input    6
+    Input    Testiavain
+    Poista Testi Lähdeviite
+    Run And Quit
+    Output Should Contain    TestiTitle
+
+Käyttäjä voi tallentaa lähdetiedot ulkoiseen tiedostoon ja nimetä tiedostoon
+    Input    4 -f
+    Input    testi
+    Run And Quit
+    Output Should Contain    testi
+
 
 *** Keywords ***
 Run And Quit
     Input    0
     Run Application
 
-Delete Reference
+Poista Testi Lähdeviite
     Input    3
     Input    Testiavain
+
+Lisää Testi Lähdeviite
+    Input    1
+    Input    Testiavain
+    Input    2
+    Input    TestiAuthor
+    Input    TestiTitle
+    Input    TestiPublisher
+    Input    2002
+    Input    ${EMPTY}
+    Input    ${EMPTY}
+    Input    ${EMPTY}
+    Input    ${EMPTY}
+    Input    ${EMPTY}
+    Input    ${EMPTY}
