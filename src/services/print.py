@@ -1,12 +1,8 @@
-from services.key import Keyhandler
-
-
 class Printservice:
     def __init__(self, converter, io):
         self.converter = converter
         self.json_data = converter.return_data()
         self.io = io
-        self.keyhandler = Keyhandler(self.converter)
 
     def print(self, entry):
         entry_type = entry['type']

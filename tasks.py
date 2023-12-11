@@ -25,4 +25,3 @@ def clean(ctx):
     
     ctx.run("autopep8 --in-place --aggressive src/*.py", pty=True)
     ctx.run("autopep8 --in-place --aggressive src/*/*.py", pty=True)
-    ctx.run("autopep8 --in-place --aggressive src/*/*/*.py", pty=True)
