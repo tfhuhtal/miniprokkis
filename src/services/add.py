@@ -25,7 +25,7 @@ class AddService:
                     "\nLähteen avain: ('Q' peruaksesi toiminto) ")
             input = self.io.read()
 
-            if input == "Q":
+            if input == "Q" or input == "q":
                 return 0
 
             if input in existing_keys:
