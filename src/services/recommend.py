@@ -20,7 +20,7 @@ class Recommendation:
             key = input
             existing_keys = self.keyhandler.get_keys()
             if key not in existing_keys:
-                self.io.write("\nLähdettä ei voitu poistaa. Tarkista avain.")
+                self.io.write("\nLähdettä ei löytynyt. Tarkista avain.")
             else:
                 for i in range(len(self.json_data)):
                     if input.lower() in str(self.json_data[i]["key"]).lower():
@@ -28,7 +28,8 @@ class Recommendation:
                 prompt_text = f"Give me a book recommendation based on the following book:\
                       {book['fields']['title']}, {book['fields']['author']}. Just the books name is enough."
                 response = self.send_prompt(prompt_text)
-                print("Kirjasuositus:", f"'{response}'")
+                self.io.write("Kirjasuositus:", f"'{response}'\n")
+                return
 
     def send_prompt(self, prompt):
         with open('src/assets/api_key.txt', 'r', encoding="utf-8") as file:
