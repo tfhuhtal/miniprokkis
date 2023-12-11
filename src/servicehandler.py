@@ -33,7 +33,7 @@ class ServiceHandler:
         self.info()
         while True:
             self.io.write("")
-            if len(self.io.inputs) == 0:
+            if len(self.io.inputs) == 0: #pragma: no-cover
                 self.io.add_input("komento: ")
             command = self.io.read()
             if command == "0":

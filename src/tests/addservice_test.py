@@ -132,3 +132,21 @@ class TestAddService(unittest.TestCase):
             "newValidKey", "1", "Martin", "book", "journal", "2000", "", "", "1--5", "", "", ""]
         self.add_service.add()
         self.assertIn("\nLähde lisätty.", self.io.outputs)
+
+    def test_add_cancel_type(self):
+        self.io.inputs = [
+            "newValidKey", "Q"]
+        self.add_service.add()
+        self.assertEqual(6, len(self.io.outputs))
+
+    def test_add_cancel_fields_pakolliset(self):
+        self.io.inputs = [
+            "newValidKey", "1", "Q"]
+        self.add_service.add()
+        self.assertEqual(7, len(self.io.outputs))
+
+    def test_add_cancel_fields_vapaaehtoiset(self):
+        self.io.inputs = [
+            "newValidKey", "1", "Martin", "book", "Journal", "2000", "Q"]
+        self.add_service.add()
+        self.assertEqual(8, len(self.io.outputs))
