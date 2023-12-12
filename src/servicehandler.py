@@ -19,6 +19,7 @@ class ServiceHandler:
         self.recommendation = Recommendation(self.converter, self.io, self.keyhandler)
 
     def info(self):
+        self.io.write("")
         self.io.write("Komennot:")
         self.io.write("  0   Sulje sovellus")
         self.io.write("  1   Lisää lähde")
@@ -71,5 +72,7 @@ class ServiceHandler:
             if command == "7":
                 self.recommendation.get_rec()
                 self.io.write("")
+                self.info()
+            else:
                 self.info()
   
