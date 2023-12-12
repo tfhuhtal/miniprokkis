@@ -31,9 +31,11 @@ class Recommendation:
             if len(self.io.inputs) == 0:  # pragma: no cover
                 self.io.add_input("(vapaaehtoinen) Kirjan kirjoittaja: ")  # pragma: no cover
             kirjoittaja = self.io.read()
-            author = ", by" + kirjoittaja
-            prompt_text = f"Anna suositus toisesta samankaltaisesta kirjasta:\
-                      {title} {author}. Pelkkä kirjan nimi riittää."
+            author = ", by " + kirjoittaja
+            if author == ", by ":
+                author = ""
+            prompt_text = f"Anna suositus toisesta samankaltaisesta julkaisusta kirjasta:\
+                      {title} {author}. Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
             response = self.send_prompt(prompt_text)
             self.io.write(f"Kirjasuositus: '{response}'\n")
             return
@@ -57,9 +59,11 @@ class Recommendation:
                     if input.lower() in str(self.json_data[i]["key"]).lower():
                         book = self.json_data[i]
                 title = book['fields']['title']
-                author = ", by" + book['fields']['author']
-                prompt_text = f"Give me a book recommendation based on the following book:\
-                      {title} {author}. Just the books name is enough."
+                auth = book['fields']['author']
+                author = ", by " + auth
+                self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {auth}")
+                prompt_text = f"Anna suositus toisesta samankaltaisesta julkaisusta kirjasta:\
+                      {title} {author}. Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
                 response = self.send_prompt(prompt_text)
                 self.io.write(f"\nKirjasuositus: '{response}'\n")
                 return
@@ -75,3 +79,4 @@ class Recommendation:
             ],
             max_tokens=50)
             return response.choices[0].message.content if response.choices else "No response"
+       
