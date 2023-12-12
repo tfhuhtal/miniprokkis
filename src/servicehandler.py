@@ -73,6 +73,6 @@ class ServiceHandler:
                 self.recommendation.get_rec()
                 self.io.write("")
                 self.info()
-            if command == "":
+            else:
                 self.info()
   
