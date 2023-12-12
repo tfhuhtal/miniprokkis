@@ -32,7 +32,7 @@ class ServiceHandler:
         self.io.write("      -c: kompakti muoto")
         self.io.write("  6   Hae lähteistä avaimella")
         self.io.write("      -c: kompakti muoto")
-        self.io.write("  7   Anna kirjasuositus lähteen perusteella")
+        self.io.write("  7   Hae kirjasuositus")
 
     def run(self):
         self.info()
@@ -70,4 +70,6 @@ class ServiceHandler:
                 self.printter.search_by_key(True)
             if command == "7":
                 self.recommendation.get_rec()
+                self.io.write("")
+                self.info()
   

@@ -81,7 +81,7 @@ class TestServiceHandler(unittest.TestCase):
             "      -c: kompakti muoto",
             "  6   Hae lähteistä avaimella",
             "      -c: kompakti muoto",
-            "  7   Anna kirjasuositus lähteen perusteella"
+            "  7   Hae kirjasuositus"
         ]
         self.assertEqual(self.io_stub.outputs, expected_outputs)
 

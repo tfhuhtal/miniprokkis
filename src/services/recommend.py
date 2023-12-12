@@ -8,6 +8,37 @@ class Recommendation:
         self.json_data = converter.return_data()
 
     def get_rec(self):
+        while True:
+            self.io.write("Komennot:")
+            self.io.write("  1   Valitse avain lähteistä")
+            self.io.write("  2   Vapaa syöttö")
+            self.io.write("  0   Poistu")
+            if len(self.io.inputs) == 0:  # pragma: no cover
+                self.io.add_input("komento: ")  # pragma: no cover
+            command = self.io.read()
+            if command == "1":
+                self.avain_haku()
+            if command == "2":
+                self.vapaa_haku()
+            if command == "0":
+                break
+
+    def vapaa_haku(self):
+        while True:
+            if len(self.io.inputs) == 0:  # pragma: no cover
+                self.io.add_input("Kirjan nimi: ")  # pragma: no cover
+            title = self.io.read()
+            if len(self.io.inputs) == 0:  # pragma: no cover
+                self.io.add_input("(vapaaehtoinen) Kirjan kirjoittaja: ")  # pragma: no cover
+            kirjoittaja = self.io.read()
+            author = ", by" + kirjoittaja
+            prompt_text = f"Anna suositus toisesta samankaltaisesta kirjasta:\
+                      {title} {author}. Pelkkä kirjan nimi riittää."
+            response = self.send_prompt(prompt_text)
+            self.io.write(f"Kirjasuositus: '{response}'\n")
+            return
+
+    def avain_haku(self):
         key = ""
         while True:
             if len(self.io.inputs) == 0:  # pragma: no cover
@@ -25,10 +56,12 @@ class Recommendation:
                 for i in range(len(self.json_data)):
                     if input.lower() in str(self.json_data[i]["key"]).lower():
                         book = self.json_data[i]
+                title = book['fields']['title']
+                author = ", by" + book['fields']['author']
                 prompt_text = f"Give me a book recommendation based on the following book:\
-                      {book['fields']['title']}, {book['fields']['author']}. Just the books name is enough."
+                      {title} {author}. Just the books name is enough."
                 response = self.send_prompt(prompt_text)
-                self.io.write("Kirjasuositus:", f"'{response}'\n")
+                self.io.write(f"\nKirjasuositus: '{response}'\n")
                 return
 
     def send_prompt(self, prompt):
