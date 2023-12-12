@@ -1,6 +1,7 @@
 import random
 from openai import OpenAI
 
+
 class Recommendation:
     def __init__(self, converter, io, keyhandler):
         self.converter = converter
@@ -36,14 +37,16 @@ class Recommendation:
                 self.io.write("\nNimi ei voi olla tyhjä\n")
             else:
                 if len(self.io.inputs) == 0:  # pragma: no cover
-                    self.io.add_input("(vapaaehtoinen) Kirjan kirjoittaja: ")  # pragma: no cover
+                    self.io.add_input(
+                        "(vapaaehtoinen) Kirjan kirjoittaja: ")  # pragma: no cover
                 kirjoittaja = self.io.read()
                 author = ", " + kirjoittaja
                 if author == ", ":
                     author = ""
                     self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}")
                 else:
-                    self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {kirjoittaja}")
+                    self.io.write(
+                        f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {kirjoittaja}")
                 prompt_text = f"Pidin kirjasta {title} {author}.\
                     Anna suositus samankaltaisesta julkaisusta kirjasta josta saattaisin pitää.\
                     Anna pelkästään suositellun kirjan nimi ja kirjoittaja."
@@ -72,7 +75,8 @@ class Recommendation:
                 title = book['fields']['title']
                 auth = book['fields']['author']
                 author = ", kirjoittanut: " + auth
-                self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {auth}")
+                self.io.write(
+                    f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {auth}")
                 prompt_text = f"Pidin kirjasta {title} {author}.\
                     Anna suositus samankaltaisesta julkaisusta kirjasta josta saattaisin pitää.\
                     Anna pelkästään suositellun kirjan nimi ja kirjoittaja."
@@ -85,18 +89,18 @@ class Recommendation:
             api_key = file.read().strip()
             client = OpenAI(api_key=api_key)
             response = client.chat.completions.create(model="gpt-3.5-turbo",  # Specify the model you want to use
-            messages=[
-            {"role": "system", "content": "Short worded."},
-            {"role": "user", "content": prompt}
-            ],
-            max_tokens=50)
+                                                      messages=[
+                                                          {"role": "system",
+                                                              "content": "Short worded."},
+                                                          {"role": "user",
+                                                              "content": prompt}
+                                                      ],
+                                                      max_tokens=50)
             return response.choices[0].message.content if response.choices else "No response"
-        
-    def get_random_key(self): # pragma: no cover
-        keys = self.keyhandler.get_keys() # pragma: no cover
-        index = random.randint(0, (len(keys)-1)) # pragma: no cover
-        key = keys.pop(index) # pragma: no cover
-        self.io.inputs = [key] # pragma: no cover
-        self.avain_haku()
 
-       
+    def get_random_key(self):  # pragma: no cover
+        keys = self.keyhandler.get_keys()  # pragma: no cover
+        index = random.randint(0, (len(keys) - 1))  # pragma: no cover
+        key = keys.pop(index)  # pragma: no cover
+        self.io.inputs = [key]  # pragma: no cover
+        self.avain_haku()

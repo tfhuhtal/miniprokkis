@@ -1,5 +1,6 @@
 from services.key import Keyhandler
 
+
 class Printservice:
     def __init__(self, converter, io):
         self.converter = converter
@@ -41,7 +42,7 @@ class Printservice:
 
             else:
                 compact_line = compact_line + \
-                        f"{entry_fields[keys]}"
+                    f"{entry_fields[keys]}"
 
         self.io.write(f"{entry_key : <20}{entry_type : <14}{compact_line}")
         self.io.write("")
@@ -50,7 +51,8 @@ class Printservice:
         printlist = printdata
         if compact is True:
             self.io.write("Tiiviissä muodossa:")
-            self.io.write(f"{'key' : <20}{'type' : <14}{'year '}{'author' : <20}{'title' : <20}")
+            self.io.write(
+                f"{'key' : <20}{'type' : <14}{'year '}{'author' : <20}{'title' : <20}")
         for i in range(len(printlist)):
             entry = printlist[i]
             if compact is True:
@@ -123,4 +125,3 @@ class Printservice:
             authors.append(key_author)
 
         return authors
-

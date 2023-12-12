@@ -16,7 +16,8 @@ class ServiceHandler:
         self.keyhandler = Keyhandler(self.converter)
         self.deletehandler = DeleteService(self.converter, self.io)
         self.adder = AddService(self.converter, self.io)
-        self.recommendation = Recommendation(self.converter, self.io, self.keyhandler)
+        self.recommendation = Recommendation(
+            self.converter, self.io, self.keyhandler)
 
     def info(self):
         self.io.write("")
@@ -75,4 +76,3 @@ class ServiceHandler:
                 self.info()
             else:
                 self.info()
-  
