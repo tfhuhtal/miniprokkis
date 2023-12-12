@@ -1,4 +1,3 @@
-import random
 from services.key import Keyhandler
 
 class Printservice:
@@ -125,9 +124,3 @@ class Printservice:
 
         return authors
 
-    def get_rec(self): # pragma: no cover
-        keys = self.keyhandler.get_keys() # pragma: no cover
-        index = random.randint(0, (len(keys)-1)) # pragma: no cover
-        key = keys.pop(index) # pragma: no cover
-        self.io.inputs = [key] # pragma: no cover
-        self.search_by_key(False)

@@ -1,3 +1,4 @@
+import random
 from openai import OpenAI
 
 class Recommendation:
@@ -11,6 +12,7 @@ class Recommendation:
         while True:
             self.io.write("Komennot:")
             self.io.write("  1   Valitse avain lähteistä")
+            self.io.write("      -r hae satunnaisella avaimella")
             self.io.write("  2   Vapaa syöttö")
             self.io.write("  0   Poistu")
             if len(self.io.inputs) == 0:  # pragma: no cover
@@ -18,6 +20,8 @@ class Recommendation:
             command = self.io.read()
             if command == "1":
                 self.avain_haku()
+            if command == "1 -r":
+                self.get_random_key()
             if command == "2":
                 self.vapaa_haku()
             if command == "0":
@@ -84,4 +88,12 @@ class Recommendation:
             ],
             max_tokens=50)
             return response.choices[0].message.content if response.choices else "No response"
+        
+    def get_random_key(self): # pragma: no cover
+        keys = self.keyhandler.get_keys() # pragma: no cover
+        index = random.randint(0, (len(keys)-1)) # pragma: no cover
+        key = keys.pop(index) # pragma: no cover
+        self.io.inputs = [key] # pragma: no cover
+        self.avain_haku()
+
        
