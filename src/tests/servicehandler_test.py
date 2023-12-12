@@ -68,6 +68,7 @@ class TestServiceHandler(unittest.TestCase):
     def test_info(self):
         self.handler.info()
         expected_outputs = [
+            "",
             "Komennot:",
             "  0   Sulje sovellus",
             "  1   Lisää lähde",

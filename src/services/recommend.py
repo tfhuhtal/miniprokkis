@@ -37,9 +37,12 @@ class Recommendation:
                 author = ", " + kirjoittaja
                 if author == ", ":
                     author = ""
+                    self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}")
+                else:
+                    self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {kirjoittaja}")
                 prompt_text = f"Pidin kirjasta {title} {author}.\
                     Anna suositus samankaltaisesta julkaisusta kirjasta josta saattaisin pitää.\
-                    Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
+                    Anna pelkästään suositellun kirjan nimi ja kirjoittaja."
                 response = self.send_prompt(prompt_text)
                 self.io.write(f"\n{response}\n")
                 return
@@ -68,7 +71,7 @@ class Recommendation:
                 self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {auth}")
                 prompt_text = f"Pidin kirjasta {title} {author}.\
                     Anna suositus samankaltaisesta julkaisusta kirjasta josta saattaisin pitää.\
-                    Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
+                    Anna pelkästään suositellun kirjan nimi ja kirjoittaja."
                 response = self.send_prompt(prompt_text)
                 self.io.write(f"\n{response}\n")
                 return
