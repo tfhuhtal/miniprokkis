@@ -167,3 +167,19 @@ class TestServiceHandler(unittest.TestCase):
         self.io_stub.add_input("0", True)
         self.handler.run()
         self.assertIn("Tiiviissä muodossa:", self.io_stub.outputs)
+
+    def test_run_and_search_by_key(self):
+        self.io_stub.add_input("6", True)
+        self.io_stub.add_input("John2020", True)
+        self.io_stub.add_input("0", True)
+        self.handler.run()
+        self.assertIn(
+            "Viite 'John2020' on tyypiltään 'book'.",
+            self.io_stub.outputs)
+
+    def test_run_and_search_by_key_c(self):
+        self.io_stub.add_input("6 -c", True)
+        self.io_stub.add_input("John2020", True)
+        self.io_stub.add_input("0", True)
+        self.handler.run()
+        self.assertIn("Tiiviissä muodossa:", self.io_stub.outputs)
