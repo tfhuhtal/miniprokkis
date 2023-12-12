@@ -28,17 +28,21 @@ class Recommendation:
             if len(self.io.inputs) == 0:  # pragma: no cover
                 self.io.add_input("Kirjan nimi: ")  # pragma: no cover
             title = self.io.read()
-            if len(self.io.inputs) == 0:  # pragma: no cover
-                self.io.add_input("(vapaaehtoinen) Kirjan kirjoittaja: ")  # pragma: no cover
-            kirjoittaja = self.io.read()
-            author = ", by " + kirjoittaja
-            if author == ", by ":
-                author = ""
-            prompt_text = f"Anna suositus toisesta samankaltaisesta julkaisusta kirjasta:\
-                      {title} {author}. Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
-            response = self.send_prompt(prompt_text)
-            self.io.write(f"Kirjasuositus: '{response}'\n")
-            return
+            if title == "":
+                self.io.write("\nNimi ei voi olla tyhjä\n")
+            else:
+                if len(self.io.inputs) == 0:  # pragma: no cover
+                    self.io.add_input("(vapaaehtoinen) Kirjan kirjoittaja: ")  # pragma: no cover
+                kirjoittaja = self.io.read()
+                author = ", " + kirjoittaja
+                if author == ", ":
+                    author = ""
+                prompt_text = f"Pidin kirjasta {title} {author}.\
+                    Anna suositus samankaltaisesta julkaisusta kirjasta josta saattaisin pitää.\
+                    Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
+                response = self.send_prompt(prompt_text)
+                self.io.write(f"\n{response}\n")
+                return
 
     def avain_haku(self):
         key = ""
@@ -60,12 +64,13 @@ class Recommendation:
                         book = self.json_data[i]
                 title = book['fields']['title']
                 auth = book['fields']['author']
-                author = ", by " + auth
+                author = ", kirjoittanut: " + auth
                 self.io.write(f"\nHaetaan kirjasuositus kirjasta {title}, jonka kirjoittanut {auth}")
-                prompt_text = f"Anna suositus toisesta samankaltaisesta julkaisusta kirjasta:\
-                      {title} {author}. Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
+                prompt_text = f"Pidin kirjasta {title} {author}.\
+                    Anna suositus samankaltaisesta julkaisusta kirjasta josta saattaisin pitää.\
+                    Anna pelkkä suositellun kirjan nimi ja kirjoittaja."
                 response = self.send_prompt(prompt_text)
-                self.io.write(f"\nKirjasuositus: '{response}'\n")
+                self.io.write(f"\n{response}\n")
                 return
 
     def send_prompt(self, prompt):
@@ -74,7 +79,7 @@ class Recommendation:
             client = OpenAI(api_key=api_key)
             response = client.chat.completions.create(model="gpt-3.5-turbo",  # Specify the model you want to use
             messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "system", "content": "Short worded."},
             {"role": "user", "content": prompt}
             ],
             max_tokens=50)
