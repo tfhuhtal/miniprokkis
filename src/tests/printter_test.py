@@ -27,7 +27,7 @@ class TestPrintservice(unittest.TestCase):
                 "type": "book",
                 "key": "Albert1946",
                 "fields": {
-                    "author": "Albert",
+                    "author": "Albert Albretsson",
                     "title": "Albertisms",
                     "publisher": "A.Albertsson",
                     "year": "1946"
@@ -45,22 +45,25 @@ class TestPrintservice(unittest.TestCase):
             os.remove("references.bib")
 
     def test_regular_print(self):
-        test_value = self.printter.list_references(False, False)
+        self.printter.list_references(False, False)
 
         self.assertEqual(13, len(self.io.outputs))
 
     def test_alphabetical_print(self):
-        test_value = self.printter.list_references(True, False)
+        self.printter.list_references(True, False)
 
         self.assertEqual(13, len(self.io.outputs))
 
     def test_compact_print(self):
-        test_value = self.printter.list_references(False, True)
+        self.printter.list_references(False, True)
 
         self.assertEqual(7, len(self.io.outputs))
 
     def test_compact_alphabetical_print(self):
-        test_value = self.printter.list_references(True, True)
+        self.printter.list_references(True, True)
+
+        if "Albert1946          book          1946 Albert Albretsson   Albertisms" != self.io.outputs[3]:
+            self.fail()
 
         self.assertEqual(7, len(self.io.outputs))
 

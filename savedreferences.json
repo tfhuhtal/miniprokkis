@@ -21,16 +21,6 @@
     },
     {
         "type": "book",
-        "key": "Alba2302",
-        "fields": {
-            "author": "Alba",
-            "title": "On",
-            "publisher": "Joku",
-            "year": "2320"
-        }
-    },
-    {
-        "type": "book",
         "key": "Smith2005",
         "fields": {
             "author": "Smith",
