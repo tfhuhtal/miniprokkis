@@ -38,6 +38,7 @@ class ServiceHandler:
 
     def run(self):
         self.info()
+        alph_comp_choices = ["2 -a -c", "2 -c -a", "2 -c-a", "2 -a-c"]
         while True:
             self.io.write("")
             if len(self.io.inputs) == 0:  # pragma: no cover
@@ -53,7 +54,7 @@ class ServiceHandler:
                 self.printter.list_references(True, False)
             if command == "2 -c":
                 self.printter.list_references(False, True)
-            if command == "2 -a -c" or command == "2 -c -a":
+            if command in alph_comp_choices:
                 self.printter.list_references(
                     True, True)
             if command == "3":
