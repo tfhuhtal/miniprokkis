@@ -45,7 +45,7 @@ class Printservice:
                     f"{entry_fields[keys]}"
 
         self.io.write(f"{entry_key : <20}{entry_type : <14}{compact_line}")
-        self.io.write("")
+        self.io.write("-"*117)
 
     def list_handler(self, compact, printdata):
         printlist = printdata
@@ -53,6 +53,7 @@ class Printservice:
             self.io.write("Tiiviissä muodossa:")
             self.io.write(
                 f"{'key' : <20}{'type' : <14}{'year '}{'author' : <20}{'title' : <20}")
+            self.io.write("-"*117)
         for i in range(len(printlist)):
             entry = printlist[i]
             if compact is True:

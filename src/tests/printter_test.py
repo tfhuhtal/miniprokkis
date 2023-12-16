@@ -57,15 +57,15 @@ class TestPrintservice(unittest.TestCase):
     def test_compact_print(self):
         self.printter.list_references(False, True)
 
-        self.assertEqual(7, len(self.io.outputs))
+        self.assertEqual(8, len(self.io.outputs))
 
     def test_compact_alphabetical_print(self):
         self.printter.list_references(True, True)
 
-        if "Albert1946          book          1946 Albert Albretsson   Albertisms" != self.io.outputs[3]:
+        if "Albert1946          book          1946 Albert Albretsson   Albertisms" != self.io.outputs[4]:
             self.fail()
 
-        self.assertEqual(7, len(self.io.outputs))
+        self.assertEqual(8, len(self.io.outputs))
 
     @patch('builtins.input', return_value='John')
     def test_search(self, mock_input):
