@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/tfhuhtal/miniprokkis/graph/badge.svg?token=M270SWOYM6)](https://codecov.io/gh/tfhuhtal/miniprokkis)
 
 - [BackLog & Taskborad](https://docs.google.com/spreadsheets/d/1zdkddheEcu4KgGOvqdeyugWC2jhsHFW93B6vufIwnQw/edit#gid=0)
-
+- [Projektin päätösraportti](https://docs.google.com/document/d/1v3dW_J0IGqbSmdsTXe1x7NmWFmD6yCiJ8JFTnCSiUf4/edit)
 
 ## Käyttöohjeita
 
